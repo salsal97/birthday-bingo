@@ -186,7 +186,10 @@ Previous Author: Werner Stoop, 2012
 			for(var x = 0; x < N; x++) {
 				var id = 'cell_' + x + '_' + y;
 				var c = document.getElementById("chk-" + id);
-				save("bingo." + id, c.checked);
+                if (id1.localeCompare(id) != 0)
+				    save("bingo."+id1+"--------" + id, c.checked);
+                else 
+                    save("bingo." + id +"_"+ person, c.checked);
 			}
 		}
 	}
