@@ -46,10 +46,17 @@ Previous Author: Werner Stoop, 2012
 	}
 	</style>
 
+	<!-- <script type="text/javascript" src="songs.json"></script> -->
 	<script type="text/javascript">
-
- var N = 3;
- var data =[{
+	
+	// var fs = require('fs');
+	// var songs = fs.readFileSync("songs.json", "utf8");
+	// var songs = $.getJSON("https://birthday-bingo.azurewebsites.net/songs.json");
+	
+	// var data = JSON.parse("https://birthday-bingo.azurewebsites.net/songs.json"); //.data;
+	// var N = JSON.parse(songs).N;
+	 var N = 3;
+	 var data = [{
 		friend: "p1",
 		quote: "\" 1 Sun shining \"",
 		song: "1 Sun shining",
@@ -136,6 +143,7 @@ Previous Author: Werner Stoop, 2012
 		}
 		html += "</table>";
 		node.innerHTML = html;
+		// node.innerHTML = "<p>"+data+" puppy 1";
 		save("bingo.grid", html);
 		saveGameState();
 	}
