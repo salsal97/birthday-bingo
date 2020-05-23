@@ -3,251 +3,213 @@ Author: Saloni Goel, 2020
 Previous Author: Werner Stoop, 2012
 -->
 <html>
+
 <head>
-	<title>Song Bingo</title>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="bingo.css">
+    <title>Song Bingo</title>
+    <!-- <script type="text/javascript" src="songs.json"></script> -->
+    <script type="text/javascript">
+        // var fs = require('fs');
+        // var songs = fs.readFileSync("songs.json", "utf8");
+        // var songs = $.getJSON("https://birthday-bingo.azurewebsites.net/songs.json");
 
-	<style>
-	h2 {background:rgb(230,255,230);text-align:center;padding:10px;border:1px solid green;}
-	body {font-family:Verdana;margin-left:20px;margin-right:20px}
-	td {
-		padding:10px 20px;
-		border-top:1px solid lightgray;
-		border-left:1px solid lightgray;
-		border-bottom:1px solid darkgray;
-		border-right:1px solid darkgray;
-	}
-	.error {
-		background-color:#FF7F7F;
-		color:red;
-		padding:5px;
-		margin:20px 50px;
-		border:1px solid red;
-	}
-	.highlight {
-		background:#47FF84;
-	}
-	a {
-		color:green;
-	}
-	td label {
-		cursor:pointer;
-    	text-align: center;
-	}
-	form {
-		margin:5px;
-		padding:5px;
-		color:green;
-	}
-	#instructions {
-		display:none;
-		border: 1px solid green;
-		margin:10px;
-		padding:20px;
-	}
-	</style>
+        // var data = JSON.parse("https://birthday-bingo.azurewebsites.net/songs.json"); //.data;
+        // var N = JSON.parse(songs).N;
+        var N = 3;
+        var data = [{
+            friend: "p1",
+            quote: "\" 1 Sun shining \"",
+            song: "1 Sun shining",
+            link: "www.youtube.com",
+            artist: "1 art"
+        }, {
+            friend: "p2",
+            quote: "\" 2 Sun shining \"",
+            song: "2 Sun shining",
+            link: "www.youtube.com",
+            artist: "2 art"
+        }, {
+            friend: "p3",
+            quote: "\" 3 Sun shining \"",
+            song: "3 Sun shining",
+            link: "www.youtube.com",
+            artist: "3 art"
+        }, {
+            friend: "p4",
+            quote: "\" 4 Sun shining \"",
+            song: "4 Sun shining",
+            link: "www.youtube.com",
+            artist: "4 art"
+        }, {
+            friend: "p5",
+            quote: "\" 5 Sun shining \"",
+            song: "5 Sun shining",
+            link: "www.youtube.com",
+            artist: "5 art"
+        }, {
+            friend: "p6",
+            quote: "\" 6 Sun shining \"",
+            song: "6 Sun shining",
+            link: "www.youtube.com",
+            artist: "6 art"
+        }, {
+            friend: "p7",
+            quote: "\" 7 Sun shining \"",
+            song: "7 Sun shining",
+            link: "www.youtube.com",
+            artist: "7 art"
+        }, {
+            friend: "p8",
+            quote: "\" 8 Sun shining \"",
+            song: "8 Sun shining",
+            link: "www.youtube.com",
+            artist: "8 art"
+        }, {
+            friend: "p9",
+            quote: "\" 9 Sun shining \"",
+            song: "9 Sun shining",
+            link: "www.youtube.com",
+            artist: "9 art"
+        }];
 
-	<!-- <script type="text/javascript" src="songs.json"></script> -->
-	<script type="text/javascript">
-	
-	// var fs = require('fs');
-	// var songs = fs.readFileSync("songs.json", "utf8");
-	// var songs = $.getJSON("https://birthday-bingo.azurewebsites.net/songs.json");
-	
-	// var data = JSON.parse("https://birthday-bingo.azurewebsites.net/songs.json"); //.data;
-	// var N = JSON.parse(songs).N;
-	 var N = 3;
-	 var data = [{
-		friend: "p1",
-		quote: "\" 1 Sun shining \"",
-		song: "1 Sun shining",
-		link: "www.youtube.com",
-		artist: "1 art"
-	}, {
-		friend: "p2",
-		quote: "\" 2 Sun shining \"",
-		song: "2 Sun shining",
-		link: "www.youtube.com",
-		artist: "2 art"
-	}, {
-		friend: "p3",
-		quote: "\" 3 Sun shining \"",
-		song: "3 Sun shining",
-		link: "www.youtube.com",
-		artist: "3 art"
-	}, {
-		friend: "p4",
-		quote: "\" 4 Sun shining \"",
-		song: "4 Sun shining",
-		link: "www.youtube.com",
-		artist: "4 art"
-	}, {
-		friend: "p5",
-		quote: "\" 5 Sun shining \"",
-		song: "5 Sun shining",
-		link: "www.youtube.com",
-		artist: "5 art"
-	}, {
-		friend: "p6",
-		quote: "\" 6 Sun shining \"",
-		song: "6 Sun shining",
-		link: "www.youtube.com",
-		artist: "6 art"
-	}, {
-		friend: "p7",
-		quote: "\" 7 Sun shining \"",
-		song: "7 Sun shining",
-		link: "www.youtube.com",
-		artist: "7 art"
-	}, {
-		friend: "p8",
-		quote: "\" 8 Sun shining \"",
-		song: "8 Sun shining",
-		link: "www.youtube.com",
-		artist: "8 art"
-	}, {
-		friend: "p9",
-		quote: "\" 9 Sun shining \"",
-		song: "9 Sun shining",
-		link: "www.youtube.com",
-		artist: "9 art"
-	}];
+        var cells = {};
 
-	var cells = {};
+        function generate() {
+            var usedWords = [];
 
-	function generate() {
-		var usedWords = [];
+            var node = document.getElementById("grid");
 
-		var node = document.getElementById("grid");
+            // generate/restart game
+            if (node.innerHTML && !confirm("Are you sure you want to regenerate?"))
+                return;
 
-		// generate/restart game
-		if(node.innerHTML && !confirm("Are you sure you want to regenerate?"))
-			return;
+            var html = '<table border="0">';
+            for (var y = 0; y < N; y++) {
+                html += "<tr>"
+                for (var x = 0; x < N; x++) {
 
-		var html = '<table border="0">';
-		for(var y = 0; y < N; y++) {
-			html += "<tr>"
-			for(var x = 0; x < N; x++) {
+                    // pick a random object
+                    // do {
+                    // 	var i = Math.round(Math.random() * (N*N - 1));
+                    // 	var obj = data[x+y*N];
+                    // } while(usedWords.indexOf(obj.friend) >= 0);
+                    // usedWords.push(obj.friend);
+                    var obj = data[x + y * N];
 
-				// pick a random object
-				// do {
-				// 	var i = Math.round(Math.random() * (N*N - 1));
-				// 	var obj = data[x+y*N];
-				// } while(usedWords.indexOf(obj.friend) >= 0);
-				// usedWords.push(obj.friend);
-				var obj = data[x + y*N];
+                    // append object html
+                    html += '<td id="cell_' + x + '_' + y + '" ><label><input id="chk-cell_' + x + '_' + y + '" type="button" onclick="cellClicked(\'cell_' + x + '_' + y + "')\">" + obj.song + " - " + obj.artist + "<br>" + obj.quote + "</label></td>";
+                }
+                html += "</tr>"
+            }
+            html += "</table>";
+            node.innerHTML = html;
+            // node.innerHTML = "<p>"+data+" puppy 1";
+            save("bingo.grid", html);
+            saveGameState();
+        }
 
-				// append object html
-				html += '<td id="cell_' + x + '_' + y + '" style="text-align:center"><label><input id="chk-cell_' + x + '_' + y + '" type="button" onclick="cellClicked(\'cell_' + x + '_' + y + "')\">" + obj.song +" - "+ obj.artist + "<br>" + obj.quote + "</label></td>";
-			}
-			html += "</tr>"
-		}
-		html += "</table>";
-		node.innerHTML = html;
-		// node.innerHTML = "<p>"+data+" puppy 1";
-		save("bingo.grid", html);
-		saveGameState();
-	}
+        /* http://diveintohtml5.info/storage.html */
+        function supports_html5_storage() {
+            try {
+                return 'localStorage' in window && window['localStorage'] !== null;
+            } catch (e) {
+                return false;
+            }
+        }
 
-	/* http://diveintohtml5.info/storage.html */
-	function supports_html5_storage() {
-	  try {
-	    return 'localStorage' in window && window['localStorage'] !== null;
-	  } catch (e) {
-	    return false;
-	  }
-	}
+        function cellClicked(id) {
+            var c = document.getElementById("chk-" + id);
+            var d = document.getElementById(id);
+            var temp = id.split("_");
+            var i = Number(temp[1]) + Number(temp[2]) * N;
 
-	function cellClicked(id) {
-		var c = document.getElementById("chk-" + id);
-		var d = document.getElementById(id);
-		var temp = id.split("_");
-		var i = Number(temp[1]) + Number(temp[2])*N;
+            var person = prompt("Enter the name of the friend " + data[i].friend).toLowerCase();
+            if (person != null) {
+                if (person == data[i].friend) {
+                    d.innerHTML = data[i].friend.toUpperCase();
+                    d.style.backgroundColor = "#114C80";
+                    //   d.className =(c.checked)?"highlight":"";
+                } else {
+                    d.style.backgroundColor = "#E69D29";
+                    if (!d.innerHTML.endsWith(", ")) {
+                        d.innerHTML += "<br> Wrong guess: ";
+                    }
+                    d.innerHTML += person + ", ";
+                }
+            }
+            saveGameState();
+        }
 
-		var person = prompt("Enter the name of the friend "+data[i].friend).toLowerCase();
-        if (person != null) {
-			if (person == data[i].friend) { 
-			  d.innerHTML = data[i].friend.toUpperCase(); 
-			  d.style.backgroundColor = "DarkCyan";    
-			//   d.className =(c.checked)?"highlight":"";
-			}
-			else { 
-				d.style.backgroundColor = "Crimson";
-				if (!d.innerHTML.endsWith(", ")){
-					d.innerHTML += "<br> Wrong guess: ";
-				}
-				d.innerHTML += person + ", ";
-			}
-		}
-		saveGameState();
-	}
+        function saveGameState() {
+            for (var y = 0; y < N; y++) {
+                for (var x = 0; x < N; x++) {
+                    var id = 'cell_' + x + '_' + y;
+                    var c = document.getElementById("chk-" + id);
+                    if (id1.localeCompare(id) != 0)
+                        save("bingo." + id1 + "--------" + id, c.checked);
+                    else
+                        save("bingo." + id + "_" + person, c.checked);
+                }
+            }
+        }
 
-	function saveGameState() {
-		for(var y = 0; y < N; y++) {
-			for(var x = 0; x < N; x++) {
-				var id = 'cell_' + x + '_' + y;
-				var c = document.getElementById("chk-" + id);
-                if (id1.localeCompare(id) != 0)
-				    save("bingo."+id1+"--------" + id, c.checked);
-                else 
-                    save("bingo." + id +"_"+ person, c.checked);
-			}
-		}
-	}
+        function loadGameState() {
+            for (var y = 0; y < N; y++) {
+                for (var x = 0; x < N; x++) {
+                    var id = 'cell_' + x + '_' + y;
+                    var c = document.getElementById("chk-" + id);
+                    c.checked = (load("bingo." + id) == 'true');
+                    var d = document.getElementById(id);
+                    d.className = (c.checked) ? "highlight" : "";
+                }
+            }
+        }
 
-	function loadGameState() {
-		for(var y = 0; y < N; y++) {
-			for(var x = 0; x < N; x++) {
-				var id = 'cell_' + x + '_' + y;
-				var c = document.getElementById("chk-" + id);
-				c.checked = (load("bingo." + id) == 'true');
-				var d = document.getElementById(id);
-				d.className =(c.checked)?"highlight":"";
-			}
-		}
-	}
+        function toggle(id) {
+            var elem = document.getElementById(id);
+            if (elem.style.display == "block")
+                elem.style.display = "none";
+            else
+                elem.style.display = "block";
+        }
 
-	function toggle(id){
-		var elem = document.getElementById(id);
-		if (elem.style.display == "block")
-			elem.style.display = "none";
-		else
-			elem.style.display = "block";
-	}
+        save = function(key, value) {};
+        load = function(key) {
+            return null
+        };
 
-	save = function(key,value){};
-	load = function(key){return null};
+        function start() {
+            if (supports_html5_storage()) {
+                save = function(key, value) {
+                    localStorage.setItem(key, value);
+                };
+                load = function(key) {
+                    return localStorage.getItem(key);
+                };
+            } else {
+                alert("Your browser does not support localStorage.\nYou won't be able to persist the Bingo grid.\nUpgrading your browser may help.");
+                return;
+            }
 
-	function start() {
-		if(supports_html5_storage()) {
-			save = function(key, value) {
-				localStorage.setItem(key,value);
-			};
-			load = function(key) {
-				return localStorage.getItem(key);
-			};
-		} else {
-			alert("Your browser does not support localStorage.\nYou won't be able to persist the Bingo grid.\nUpgrading your browser may help.");
-			return;
-		}
-
-		var grid = load("bingo.grid");
-		if(grid) {
-			console.log("Loaded a previously generated grid");
-			var node = document.getElementById("grid");
-			node.innerHTML = grid;
-			loadGameState();
-		}
-	}
-	</script>
+            var grid = load("bingo.grid");
+            if (grid) {
+                console.log("Loaded a previously generated grid");
+                var node = document.getElementById("grid");
+                node.innerHTML = grid;
+                loadGameState();
+            }
+        }
+    </script>
 </head>
+
 <body onLoad="start()">
-<h1>Song Bingo</h1>
+    <h1>Song Bingo</h1>
 
-An exciting game for your quarantine birthday! 
+    <p>An exciting game for your quarantine birthday!<a href="javascript:toggle('instructions');"> Instructions...</a></p>
 
-<a href="javascript:toggle('instructions');">Instructions...</a>
-
-<noscript>
+    <noscript>
 <div class="error">
 <strong>Problem:</strong>
 <p><em>
@@ -256,22 +218,24 @@ You do not have JavaScript enabled. JavaScript must be enabled for this applicat
 </div>
 </noscript>
 
-<div id="instructions">
-<h2>Instructions</h2>
-<ol>
-	<noscript><li>Enable JavaScript</li></noscript>
-	<li>Click <strong>Refresh</strong> to create your Bingo board.</li>
-	<li>In the boxes you see the name of a song, its artist, and a quote from the song that someone chose for you </li>
-	<li>Click on the button in the box to guess who chose this song!  </li>
-	<li>If your guess is right, the box will change color and display the name of the person (:  </li>
-	<li>If your guess is wrong, the box will show you your incorrect guess to help you narrow your search  </li>
-	<li>HINT: The main page of this website should be populated with the people who participated! I restricted this to first names to make it easy  </li>
-</ol>
-</div>
-<form>
-<input type="button" value="Refresh" onClick="generate();"/>
-</form>
-<h2>Grid</h2>
-<div id="grid"></div>
+    <div id="instructions">
+        <h2>Instructions</h2>
+        <ol>
+            <noscript><li>Enable JavaScript</li></noscript>
+            <li>Click <strong>Refresh</strong> to create your Bingo board.</li>
+            <li>In the boxes you see the name of a song, its artist, and a quote from the song that someone chose for you </li>
+            <li>Click on the button in the box to guess who chose this song! </li>
+            <li>If your guess is right, the box will change color and display the name of the person (: </li>
+            <li>If your guess is wrong, the box will show you your incorrect guess to help you narrow your search </li>
+            <li>HINT: The main page of this website should be populated with the people who participated! We restricted this to first names to make it easy </li>
+        </ol>
+    </div>
+    <form>
+        <input type="button" value="Refresh" onClick="generate();" />
+    </form>
+    <div id="grid"></div>
+    <h2>Leaderboard</h2>
+    <div id="leaderboard"></div>
 </body>
+
 </html>
