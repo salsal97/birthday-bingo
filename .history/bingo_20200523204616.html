@@ -99,7 +99,7 @@ Previous Author: Werner Stoop, 2012
 
                     // append object html
                     // html += '<td id="cell_' + x + '_' + y + '" ><label><input id="chk-cell_' + x + '_' + y + '" type="button" onclick="cellClicked(\'cell_' + x + '_' + y + "')\">" + obj.song + " - " + obj.artist + "<br>" + obj.quote + "</label></td>";
-					html += '<td id="cell_'+x+"_"+y+'">'+'<button class="listenBtn">Listen to Song!</button>'+"<br>"+obj.song+ " - " + obj.artist + "<br>" + obj.quote +"<br>"+'<button id="guessBtn" onClick= "cellClicked("cell_'+x+"_"+y+'")">Guess!</button>'+'</td>';
+					html += '<td>'+'<button class="listenBtn">Listen to Song!</button>'+"<br>"+obj.quote +"<br>"+'<button class="guessBtn">Guess!</button>'+'</td>';
                 }
                 html += "</tr>"
             }
@@ -120,27 +120,26 @@ Previous Author: Werner Stoop, 2012
         }
 
         function cellClicked(id) {
-			prompt("Enter the name of your friend");
-            // var c = document.getElementById("chk-" + id);
-            // var d = document.getElementById(id);
-            // var temp = id.split("_");
-            // var i = Number(temp[1]) + Number(temp[2]) * N;
+            var c = document.getElementById("chk-" + id);
+            var d = document.getElementById(id);
+            var temp = id.split("_");
+            var i = Number(temp[1]) + Number(temp[2]) * N;
 
-            // var person = prompt("Enter the name of the friend " + data[i].friend).toLowerCase();
-            // if (person != null) {
-            //     if (person == data[i].friend) {
-            //         d.innerHTML = data[i].friend.toUpperCase();
-            //         d.style.backgroundColor = "#114C80";
-            //         //   d.className =(c.checked)?"highlight":"";
-            //     } else {
-            //         d.style.backgroundColor = "#E69D29";
-            //         if (!d.innerHTML.endsWith(", ")) {
-            //             d.innerHTML += "<br> Wrong guess: ";
-            //         }
-            //         d.innerHTML += person + ", ";
-            //     }
-            // }
-            // saveGameState();
+            var person = prompt("Enter the name of the friend " + data[i].friend).toLowerCase();
+            if (person != null) {
+                if (person == data[i].friend) {
+                    d.innerHTML = data[i].friend.toUpperCase();
+                    d.style.backgroundColor = "#114C80";
+                    //   d.className =(c.checked)?"highlight":"";
+                } else {
+                    d.style.backgroundColor = "#E69D29";
+                    if (!d.innerHTML.endsWith(", ")) {
+                        d.innerHTML += "<br> Wrong guess: ";
+                    }
+                    d.innerHTML += person + ", ";
+                }
+            }
+            saveGameState();
         }
 
         function saveGameState() {

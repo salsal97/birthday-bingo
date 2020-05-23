@@ -120,27 +120,26 @@ Previous Author: Werner Stoop, 2012
         }
 
         function cellClicked(id) {
-			prompt("Enter the name of your friend");
-            // var c = document.getElementById("chk-" + id);
-            // var d = document.getElementById(id);
-            // var temp = id.split("_");
-            // var i = Number(temp[1]) + Number(temp[2]) * N;
+            var c = document.getElementById("chk-" + id);
+            var d = document.getElementById(id);
+            var temp = id.split("_");
+            var i = Number(temp[1]) + Number(temp[2]) * N;
 
-            // var person = prompt("Enter the name of the friend " + data[i].friend).toLowerCase();
-            // if (person != null) {
-            //     if (person == data[i].friend) {
-            //         d.innerHTML = data[i].friend.toUpperCase();
-            //         d.style.backgroundColor = "#114C80";
-            //         //   d.className =(c.checked)?"highlight":"";
-            //     } else {
-            //         d.style.backgroundColor = "#E69D29";
-            //         if (!d.innerHTML.endsWith(", ")) {
-            //             d.innerHTML += "<br> Wrong guess: ";
-            //         }
-            //         d.innerHTML += person + ", ";
-            //     }
-            // }
-            // saveGameState();
+            var person = prompt("Enter the name of the friend " + data[i].friend).toLowerCase();
+            if (person != null) {
+                if (person == data[i].friend) {
+                    d.innerHTML = data[i].friend.toUpperCase();
+                    d.style.backgroundColor = "#114C80";
+                    //   d.className =(c.checked)?"highlight":"";
+                } else {
+                    d.style.backgroundColor = "#E69D29";
+                    if (!d.innerHTML.endsWith(", ")) {
+                        d.innerHTML += "<br> Wrong guess: ";
+                    }
+                    d.innerHTML += person + ", ";
+                }
+            }
+            saveGameState();
         }
 
         function saveGameState() {

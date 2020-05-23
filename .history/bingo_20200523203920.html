@@ -99,7 +99,7 @@ Previous Author: Werner Stoop, 2012
 
                     // append object html
                     // html += '<td id="cell_' + x + '_' + y + '" ><label><input id="chk-cell_' + x + '_' + y + '" type="button" onclick="cellClicked(\'cell_' + x + '_' + y + "')\">" + obj.song + " - " + obj.artist + "<br>" + obj.quote + "</label></td>";
-					html += '<td id="cell_'+x+"_"+y+'">'+'<button class="listenBtn">Listen to Song!</button>'+"<br>"+obj.song+ " - " + obj.artist + "<br>" + obj.quote +"<br>"+'<button id="guessBtn" onClick= "cellClicked("cell_'+x+"_"+y+'")">Guess!</button>'+'</td>';
+					html += '<td>'+obj.song+ " - " + obj.artist + "<br>" + obj.quote +'<button class="editbtn">YouTube</button>'+'</td>';
                 }
                 html += "</tr>"
             }
@@ -120,27 +120,26 @@ Previous Author: Werner Stoop, 2012
         }
 
         function cellClicked(id) {
-			prompt("Enter the name of your friend");
-            // var c = document.getElementById("chk-" + id);
-            // var d = document.getElementById(id);
-            // var temp = id.split("_");
-            // var i = Number(temp[1]) + Number(temp[2]) * N;
+            var c = document.getElementById("chk-" + id);
+            var d = document.getElementById(id);
+            var temp = id.split("_");
+            var i = Number(temp[1]) + Number(temp[2]) * N;
 
-            // var person = prompt("Enter the name of the friend " + data[i].friend).toLowerCase();
-            // if (person != null) {
-            //     if (person == data[i].friend) {
-            //         d.innerHTML = data[i].friend.toUpperCase();
-            //         d.style.backgroundColor = "#114C80";
-            //         //   d.className =(c.checked)?"highlight":"";
-            //     } else {
-            //         d.style.backgroundColor = "#E69D29";
-            //         if (!d.innerHTML.endsWith(", ")) {
-            //             d.innerHTML += "<br> Wrong guess: ";
-            //         }
-            //         d.innerHTML += person + ", ";
-            //     }
-            // }
-            // saveGameState();
+            var person = prompt("Enter the name of the friend " + data[i].friend).toLowerCase();
+            if (person != null) {
+                if (person == data[i].friend) {
+                    d.innerHTML = data[i].friend.toUpperCase();
+                    d.style.backgroundColor = "#114C80";
+                    //   d.className =(c.checked)?"highlight":"";
+                } else {
+                    d.style.backgroundColor = "#E69D29";
+                    if (!d.innerHTML.endsWith(", ")) {
+                        d.innerHTML += "<br> Wrong guess: ";
+                    }
+                    d.innerHTML += person + ", ";
+                }
+            }
+            saveGameState();
         }
 
         function saveGameState() {
@@ -219,6 +218,27 @@ You do not have JavaScript enabled. JavaScript must be enabled for this applicat
 </div>
 </noscript>
 
+<<<<<<< HEAD
+<div id="instructions">
+<h2>Instructions</h2>
+<ol>
+	<noscript><li>Enable JavaScript</li></noscript>
+	<li>Click <strong>Refresh</strong> to create your Bingo board.</li>
+	<li>In the boxes you see the name of a song, its artist, and a quote from the song that someone chose for you </li>
+	<li>Click on the button in the box to guess who chose this song!  </li>
+	<li>If your guess is right, the box will change color and display the name of the person (:  </li>
+	<li>If your guess is wrong, the box will show you your incorrect guess to help you narrow your search  </li>
+	<li>HINT: The main page of this website should be populated with the people who participated! I restricted this to first names to make it easy  </li>
+</ol>
+</div>
+<form>
+<input type="button" value="Refresh" onClick="generate();"/>
+</form>
+<h2>Grid</h2>
+<div id="grid"></div>
+</body>
+</html>
+=======
     <div id="instructions">
         <h2>Instructions</h2>
         <ol>
@@ -240,3 +260,4 @@ You do not have JavaScript enabled. JavaScript must be enabled for this applicat
 </body>
 
 </html>
+>>>>>>> 987726db4ee3f61618844b7c3085f1b8999e616b
