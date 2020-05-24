@@ -5,3 +5,4 @@
 2. https://www.w3schools.com/
 3. https://color.adobe.com/create/color-wheel
 4. https://fonts.google.com/ 
+5. https://fontawesome.com/
