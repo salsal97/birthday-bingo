@@ -121,9 +121,7 @@ Previous Author: Werner Stoop, 2012
                 if (person == data[i].friend) {
                     d.innerHTML = data[i].friend.toUpperCase();
                     d.style.backgroundColor = "#114C80";
-                    leaderboard.innerHTML += data[i].friend;
-                    if (leaderboard.innerHTML)
-                        leaderboard.innerHTML += ", ";
+                    leaderboard.innerHTML += data[i].friend + ", ";
                 } else {
                     wrong_guesses[i]++;
                     if (wrong_guesses[i] >= guess_threshold) {
