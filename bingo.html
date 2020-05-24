@@ -120,6 +120,7 @@ Previous Author: Werner Stoop, 2012
         function cellClicked(id) {
             var c = document.getElementById("chk-" + id);
             var d = document.getElementById(id);
+            var leaderboard = document.getElementById("leaderboard");
             var temp = id.split("_");
             var i = Number(temp[1]) + Number(temp[2]) * N;
 
@@ -128,6 +129,9 @@ Previous Author: Werner Stoop, 2012
                 if (person == data[i].friend) {
                     d.innerHTML = data[i].friend.toUpperCase();
                     d.style.backgroundColor = "#114C80";
+                    leaderboard.innerHTML += data[i].friend;
+                    if (leaderboard.innerHTML)
+                        leaderboard.innerHTML += ", ";
                     //   d.className =(c.checked)?"highlight":"";
                 } else {
                     d.style.backgroundColor = "#E69D29";
@@ -233,7 +237,7 @@ You do not have JavaScript enabled. JavaScript must be enabled for this applicat
         <input type="button" value="Refresh" onClick="generate();" />
     </form>
     <div id="grid"></div>
-    <h2>Leaderboard</h2>
+    <h2>Correct guesses</h2>
     <div id="leaderboard"></div>
 </body>
 
