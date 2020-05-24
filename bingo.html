@@ -7,6 +7,7 @@ Previous Author: Werner Stoop, 2012
 <head>
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/39896120a5.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="bingo.css">
     <title>Song Bingo</title>
     <!-- <script type="text/javascript" src="songs.json"></script> -->
@@ -98,7 +99,11 @@ Previous Author: Werner Stoop, 2012
                     var obj = data[x + y * N];
 
                     // create a table object
-                    html += '<td id="cell_' + x + '_' + y + '" ><button class="listenBtn">Listen to Song!</button><br>' + obj.song + " - " + obj.artist + "<br>" + obj.quote + '<br><button id="chk-cell_' + x + '_' + y + '" onClick= "cellClicked(\'cell_' + x + '_' + y + "')\"> Guess! </button></td>";
+                    html += '<td id="cell_' + x + '_' + y + '" >' +
+                        '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + "')\"> <i class=\"fas fa-dice\"></i></span>" +
+                        "\t" + obj.song + " - " + obj.artist +
+                        "<br>" + '<span class="videoLink"><i class="fab fa-youtube"></i></span>' + "\t" + obj.quote +
+                        "</td>";
                 }
                 html += "</tr>"
             }
@@ -223,7 +228,8 @@ You do not have JavaScript enabled. JavaScript must be enabled for this applicat
             <noscript><li>Enable JavaScript</li></noscript>
             <li>Click <strong>Refresh</strong> to create your Bingo board.</li>
             <li>In the boxes you see the name of a song, its artist, and a quote from the song that someone chose for you </li>
-            <li>Click on the button in the box to guess who chose this song! </li>
+            <li>Click on the <i class="fab fa-youtube"></i> in the box to play the song </li>
+            <li><strong>Click on the <i class="fas fa-dice"></i> in the box to guess who chose this song! </strong></li>
             <li>If your guess is right, the box will change color and display the name of the person (: </li>
             <li>If your guess is wrong, the box will show you your incorrect guess to help you narrow your search </li>
             <li>HINT: The main page of this website should be populated with the people who participated! We restricted this to first names to make it easy </li>
