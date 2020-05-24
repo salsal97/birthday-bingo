@@ -9,15 +9,10 @@ Previous Author: Werner Stoop, 2012
     <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/39896120a5.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="bingo.css">
-    <title>Song Bingo</title>
-    <!-- <script type="text/javascript" src="songs.json"></script> -->
-    <script type="text/javascript">
-        // var fs = require('fs');
-        // var songs = fs.readFileSync("songs.json", "utf8");
-        // var songs = $.getJSON("https://birthday-bingo.azurewebsites.net/songs.json");
 
-        // var data = JSON.parse("https://birthday-bingo.azurewebsites.net/songs.json"); //.data;
-        // var N = JSON.parse(songs).N;
+    <title>Song Bingo</title>
+
+    <script type="text/javascript">
         var N = 3;
         var data = [{
             friend: "p1",
@@ -109,7 +104,6 @@ Previous Author: Werner Stoop, 2012
             }
             html += "</table>";
             node.innerHTML = html;
-            // node.innerHTML = "<p>"+data+" puppy 1";
             save("bingo.grid", html);
             saveGameState();
         }
