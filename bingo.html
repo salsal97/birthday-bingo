@@ -14,6 +14,8 @@ Previous Author: Werner Stoop, 2012
 
     <script type="text/javascript">
         var N = 3;
+        var guess_threshold = 5;
+        var wrong_guesses = new Array(N * N).fill(0);
         var data = [{
             friend: "p1",
             quote: "\" 1 Sun shining \"",
@@ -70,10 +72,7 @@ Previous Author: Werner Stoop, 2012
             artist: "9 art"
         }];
 
-        var cells = {};
-
         function generate() {
-            var usedWords = [];
             var node = document.getElementById("grid");
 
             // generate/restart game
@@ -84,13 +83,6 @@ Previous Author: Werner Stoop, 2012
             for (var y = 0; y < N; y++) {
                 html += "<tr>"
                 for (var x = 0; x < N; x++) {
-
-                    // pick a random object
-                    // do {
-                    // 	var i = Math.round(Math.random() * (N*N - 1));
-                    // 	var obj = data[x+y*N];
-                    // } while(usedWords.indexOf(obj.friend) >= 0);
-                    // usedWords.push(obj.friend);
                     var obj = data[x + y * N];
 
                     // create a table object
@@ -132,8 +124,12 @@ Previous Author: Werner Stoop, 2012
                     leaderboard.innerHTML += data[i].friend;
                     if (leaderboard.innerHTML)
                         leaderboard.innerHTML += ", ";
-                    //   d.className =(c.checked)?"highlight":"";
                 } else {
+                    wrong_guesses[i]++;
+                    if (wrong_guesses[i] >= guess_threshold) {
+                        if (confirm("Would you like to give up?"))
+                            alert("The correct answer is " + data[i].friend);
+                    }
                     d.style.backgroundColor = "#E69D29";
                     if (!d.innerHTML.endsWith(", ")) {
                         d.innerHTML += "<br> Wrong guess: ";
