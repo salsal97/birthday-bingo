@@ -99,7 +99,7 @@
 
             var person = prompt("Enter the name of the friend");
             if (person != null) {
-                if (person == data[i].friend) {
+                if (person.toLowerCase() == data[i].friend.toLowerCase()) {
                     d.innerHTML = data[i].friend.toUpperCase();
                     d.style.backgroundColor = "#114C80";
                     var player = document.getElementById("player_" + i);
