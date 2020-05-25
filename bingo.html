@@ -5,77 +5,29 @@ Previous Author: Werner Stoop, 2012
 <html>
 
 <head>
+    <!-- browser icon -->
+    <script src="https://kit.fontawesome.com/39896120a5.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
-    <script src="https://kit.fontawesome.com/39896120a5.js" crossorigin="anonymous"></script>
+
+    <!-- css -->
     <link rel="stylesheet" type="text/css" href="bingo.css">
+    <script src="songs.txt"></script>
 
     <title>Song Bingo</title>
 
     <script type="text/javascript">
-        var N = 3;
-        var guess_threshold = 5;
+        var N = N1;
+        var data = data1;
         var wrong_guesses = new Array(N * N).fill(0);
-        var data = [{
-            friend: "p1",
-            quote: "\" 1 Sun shining \"",
-            song: "1 Sun shining",
-            link: "www.youtube.com",
-            artist: "1 art"
-        }, {
-            friend: "p2",
-            quote: "\" 2 Sun shining \"",
-            song: "2 Sun shining",
-            link: "www.youtube.com",
-            artist: "2 art"
-        }, {
-            friend: "p3",
-            quote: "\" 3 Sun shining \"",
-            song: "3 Sun shining",
-            link: "www.youtube.com",
-            artist: "3 art"
-        }, {
-            friend: "p4",
-            quote: "\" 4 Sun shining \"",
-            song: "4 Sun shining",
-            link: "www.youtube.com",
-            artist: "4 art"
-        }, {
-            friend: "p5",
-            quote: "\" 5 Sun shining \"",
-            song: "5 Sun shining",
-            link: "www.youtube.com",
-            artist: "5 art"
-        }, {
-            friend: "p6",
-            quote: "\" 6 Sun shining \"",
-            song: "6 Sun shining",
-            link: "www.youtube.com",
-            artist: "6 art"
-        }, {
-            friend: "p7",
-            quote: "\" 7 Sun shining \"",
-            song: "7 Sun shining",
-            link: "www.youtube.com",
-            artist: "7 art"
-        }, {
-            friend: "p8",
-            quote: "\" 8 Sun shining \"",
-            song: "8 Sun shining",
-            link: "www.youtube.com",
-            artist: "8 art"
-        }, {
-            friend: "p9",
-            quote: "\" 9 Sun shining \"",
-            song: "9 Sun shining",
-            link: "www.youtube.com",
-            artist: "9 art"
-        }];
+        var wrong_guess_threshold = wrong_guess_threshold1;
 
+        // generate/restart game
         function generate() {
             var node = document.getElementById("grid");
 
-            // generate/restart game
             if (node.innerHTML && !confirm("Are you sure you want to regenerate?"))
                 return;
 
@@ -124,7 +76,7 @@ Previous Author: Werner Stoop, 2012
                     leaderboard.innerHTML += data[i].friend + ", ";
                 } else {
                     wrong_guesses[i]++;
-                    if (wrong_guesses[i] >= guess_threshold) {
+                    if (wrong_guesses[i] >= wrong_guess_threshold) {
                         if (confirm("Would you like to give up?"))
                             alert("The correct answer is " + data[i].friend);
                     }
