@@ -70,3 +70,14 @@ form {
     padding: 20px;
     text-align: left;
 }
+
+#embeddedPlayer {
+    display: none;
+}
+
+ul,
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

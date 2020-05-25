@@ -40,12 +40,15 @@
     <script type="text/javascript">
         var N = N1;
         var data = data1;
-        var wrong_guesses = new Array(N * N).fill(0);
         var wrong_guess_threshold = wrong_guess_threshold1;
+        var wrong_guesses = new Array(N * N).fill(0);
+        var correct_guesses = 0;
 
         // generate/restart game
         function generate() {
+            document.getElementById("player").innerHTML = "";
             var node = document.getElementById("grid");
+            var usedPlayers = [];
 
             if (node.innerHTML && !confirm("Are you sure you want to regenerate?"))
                 return;
@@ -56,12 +59,18 @@
                 for (var x = 0; x < N; x++) {
                     var obj = data[x + y * N];
 
+                    do {
+                        var i = Math.round(Math.random() * (N * N - 1));
+                        var player = data[i].friend;
+                    } while (usedPlayers.indexOf(player) >= 0);
+                    usedPlayers.push(player);
+                    document.getElementById("player").innerHTML += '<li id="player_' + i + '">' + player + '</li>';
+
                     // create a table object
                     html += '<td id="cell_' + x + '_' + y + '" >' +
                         '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + "')\"> <i class=\"fas fa-dice\"></i></span>" +
                         "\t" + obj.song + " - " + obj.artist +
-                        "<br>" + '<a href="' + obj.link + '" style="color:lightgrey"><i class="fab fa-youtube"></i></a>' + "\t" + obj.quote +
-                        "</td>";
+                        "<br>" + '<span onClick="openPlayer(\'cell_' + x + '_' + y + "')\"><i class=\"fab fa-youtube\"></i></span>" + "\t" + obj.quote + "</td>";
                 }
                 html += "</tr>"
             }
@@ -80,23 +89,46 @@
             }
         }
 
+
         function cellClicked(id) {
             var c = document.getElementById("chk-" + id);
             var d = document.getElementById(id);
-            var leaderboard = document.getElementById("leaderboard");
+
             var temp = id.split("_");
             var i = Number(temp[1]) + Number(temp[2]) * N;
 
-            var person = prompt("Enter the name of the friend " + data[i].friend).toLowerCase();
+            var person = prompt("Enter the name of the friend");
             if (person != null) {
-                if (person == data[i].friend) {
+                if (person.toLowerCase() == data[i].friend.toLowerCase()) {
                     d.innerHTML = data[i].friend.toUpperCase();
                     d.style.backgroundColor = "#114C80";
-                    leaderboard.innerHTML += data[i].friend + ", ";
+                    var player = document.getElementById("player_" + i);
+                    player.innerHTML = "<s>" + player.innerHTML + "</s>";
+                    correct_guesses++;
+
+                    if (correct_guesses == N * N) {
+                        document.getElementById("player_list").innerHTML = "";
+                        document.getElementById("grid").innerHTML = '<h1 style="background:#0A7328"> Congratulations! Your prize is loading ...</h1>';
+                        var elem = document.getElementById("progress_bar");
+                        elem.innerHTML = '<h1 style="background:white"> </h1>';
+
+                        var width = 1;
+                        var id = setInterval(frame, 100);
+
+                        function frame() {
+                            if (width >= 100) {
+                                clearInterval(id);
+                                window.location.replace("prize.html");
+                            } else {
+                                width++;
+                                elem.style.width = width + '%';
+                            }
+                        }
+                    }
                 } else {
                     wrong_guesses[i]++;
                     if (wrong_guesses[i] >= wrong_guess_threshold) {
-                        if (confirm("Would you like to give up?"))
+                        if (confirm("Cheat code activated. Would you like to know the answer?"))
                             alert("The correct answer is " + data[i].friend);
                     }
                     d.style.backgroundColor = "#E69D29";
@@ -109,15 +141,29 @@
             saveGameState();
         }
 
+
+        //open YouTube embedded
+        function openPlayer(id) {
+            console.log("ID in openPlayer -> " + id);
+            var temp = id.split("_");
+            var i = Number(temp[1]) + Number(temp[2]) * N;
+            var youTubeCode = data[i].link;
+            console.log(youTubeCode);
+            var elem = document.getElementById("embeddedPlayer");
+            document.getElementById("youtubePlayer").src = "https://www.youtube.com/embed/" + youTubeCode;
+            if (elem.style.display == "block")
+                elem.style.display = "none";
+            else
+                elem.style.display = "block";
+        }
+
+
         function saveGameState() {
             for (var y = 0; y < N; y++) {
                 for (var x = 0; x < N; x++) {
                     var id = 'cell_' + x + '_' + y;
                     var c = document.getElementById("chk-" + id);
-                    if (id1.localeCompare(id) != 0)
-                        save("bingo." + id1 + "--------" + id, c.checked);
-                    else
-                        save("bingo." + id + "_" + person, c.checked);
+                    save("bingo." + id, c.checked);
                 }
             }
         }
@@ -174,36 +220,50 @@
 <body onLoad="start()">
     <h1>Song Bingo</h1>
 
-    <p>An exciting game for your quarantine birthday!<a href="javascript:toggle('instructions');"> Instructions...</a></p>
+    <p>An exciting game for your quarantine birthday!<a href="javascript:toggle('instructions');"> Instructions...</a>
+    </p>
 
     <noscript>
-<div class="error">
-<strong>Problem:</strong>
-<p><em>
-You do not have JavaScript enabled. JavaScript must be enabled for this application to work.
-</em></p>
-</div>
-</noscript>
+        <div class="error">
+            <strong>Problem:</strong>
+            <p><em>
+                    You do not have JavaScript enabled. JavaScript must be enabled for this application to work.
+                </em></p>
+        </div>
+    </noscript>
 
     <div id="instructions">
         <h2>Instructions</h2>
         <ol>
-            <noscript><li>Enable JavaScript</li></noscript>
+            <noscript>
+                <li>Enable JavaScript</li>
+            </noscript>
             <li>Click <strong>Refresh</strong> to create your Bingo board.</li>
             <li>In the boxes you see the name of a song, its artist, and a quote from the song that someone chose for you </li>
             <li>Click on the <i class="fab fa-youtube"></i> in the box to play the song </li>
-            <li><strong>Click on the <i class="fas fa-dice"></i> in the box to guess who chose this song! </strong></li>
+            <li><strong>Click on the <i class="fas fa-dice"></i> in the box to guess who chose this song </strong></li>
             <li>If your guess is right, the box will change color and display the name of the person (: </li>
             <li>If your guess is wrong, the box will show you your incorrect guess to help you narrow your search </li>
-            <li>HINT: The main page of this website should be populated with the people who participated! We restricted this to first names to make it easy </li>
+            <li>HINT: The roster on the left of the grid has names of the people who participated! We restricted this to first names to make it easy. Hit refresh if it hasn't been populated yet </li>
+            <li>Good luck, maybe time yourself?</li>
         </ol>
     </div>
+
+    <div id="embeddedPlayer">
+        <iframe id="youtubePlayer" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>;
+    </div>
+
+    <div style="float:left" id="player_list">
+        <h2 style="margin-bottom:0">Roster</h2>
+        <ul id="player"></ul>
+    </div>
+
     <form>
         <input type="button" value="Refresh" onClick="generate();" />
     </form>
+
     <div id="grid"></div>
-    <h2>Correct guesses</h2>
-    <div id="leaderboard"></div>
+    <div id="progress_bar"></div>
 </body>
 
 </html>
