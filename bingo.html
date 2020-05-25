@@ -19,7 +19,7 @@
     <script src="songs.txt"></script>
 
     <!-- Disable right click http://www.spacegun.co.uk -->
-    <script language=JavaScript>
+    <!-- <script language=JavaScript>
         var message = "Try not to cheat, sucker.";
 
         function rtclickcheck(keyp) {
@@ -33,7 +33,7 @@
             }
         }
         document.onmousedown = rtclickcheck;
-    </script>
+    </script> -->
 
     <title>Song Bingo</title>
 
@@ -43,7 +43,6 @@
         var wrong_guess_threshold = wrong_guess_threshold1;
         var wrong_guesses = new Array(N * N).fill(0);
         var correct_guesses = 0;
-        var youTubeUrl = "https://www.youtube.com/embed/MjvFqxuatRc";
 
 
 
@@ -63,7 +62,7 @@
                     html += '<td id="cell_' + x + '_' + y + '" >' +
                         '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + "')\"> <i class=\"fas fa-dice\"></i></span>" +
                         "\t" + obj.song + " - " + obj.artist +
-                        "<br>" + '<span onClick="openPlayer('+x+')"><i class="fab fa-youtube"></i></span>' + "\t" + obj.quote + "</td>";
+                        "<br>" + '<span onClick="openPlayer("cell_'+ x + '_' + y +'")"><i class="fab fa-youtube"></i></span>' + "\t" + obj.quote + "</td>";
                 }
                 html += "</tr>"
             }
@@ -87,6 +86,7 @@
             var c = document.getElementById("chk-" + id);
             var d = document.getElementById(id);
             var leaderboard = document.getElementById("leaderboard");
+            console.log("ID in cellClicked -> " +id);
             var temp = id.split("_");
             var i = Number(temp[1]) + Number(temp[2]) * N;
 
@@ -135,7 +135,10 @@
 
         //open YouTube embedded
         function openPlayer(id) {
-            var youTubeCode = data[id].link;
+            console.log("ID in openPlayer -> " +id);
+            var temp = id.split("_");
+            var i = Number(temp[1]) + Number(temp[2]) * N;
+            var youTubeCode = data[i].link;
             console.log(youTubeCode);
             var elem = document.getElementById("embeddedPlayer");
             document.getElementById("youtubePlayer").src = "https://www.youtube.com/embed/"+youTubeCode;

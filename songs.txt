@@ -1,66 +1,111 @@
-let N1 = 3;
+let N1 = 4;
 let wrong_guess_threshold1 = 5;
-let data1 = [{
-        "friend": "person1",
-        "quote": "\" 1 Sun shining \"",
-        "song": "1 Sun shining",
-        "link": "MjvFqxuatRc",
-        "artist": "1 art"
-    },
-    {
-        "friend": "person2",
-        "quote": "\" 2 Sun shining \"",
-        "song": "2 Sun shining",
-        "link": "lXYC0BkquHg",
-        "artist": "2 art"
-    },
-    {
-        "friend": "person3",
-        "quote": "\" 3 Sun shining \"",
-        "song": "3 Sun shining",
-        "link": "MjvFqxuatRc",
-        "artist": "3 art"
-    },
-    {
-        "friend": "person4",
-        "quote": "\" 4 Sun shining \"",
-        "song": "4 Sun shining",
-        "link": "MjvFqxuatRc",
-        "artist": "4 art"
-    },
-    {
-        "friend": "person5",
-        "quote": "\" 5 Sun shining \"",
-        "song": "5 Sun shining",
-        "link": "MjvFqxuatRc",
-        "artist": "5 art"
-    },
-    {
-        "friend": "person6",
-        "quote": "\" 6 Sun shining \"",
-        "song": "6 Sun shining",
-        "link": "MjvFqxuatRc",
-        "artist": "6 art"
-    },
-    {
-        "friend": "person7",
-        "quote": "\" 7 Sun shining \"",
-        "song": "7 Sun shining",
-        "link": "MjvFqxuatRc",
-        "artist": "7 art"
-    },
-    {
-        "friend": "person8",
-        "quote": "\" 8 Sun shining \"",
-        "song": "8 Sun shining",
-        "link": "MjvFqxuatRc",
-        "artist": "8 art"
-    },
-    {
-        "friend": "person9",
-        "quote": "\" 9 Sun shining \"",
-        "song": "9 Sun shining",
-        "link": "MjvFqxuatRc",
-        "artist": "9 art"
-    }
+let data1 = [
+        {
+            "friend": "Ali",
+            "song": "kajra re",
+            "artist": "who cares. Its kajra re",
+            "quote": "use the chorus hehe",
+            "link": "4dsFQFCvVGU"
+        },
+        {
+            "friend": "Disha",
+            "song": "Choo Lo",
+            "artist": "Local Train",
+            "quote": "khada hu aaj bhi wahi",
+            "link": "sFMRqxCexDk"
+        },
+        {
+            "friend": "Trisha",
+            "song": "Chicken Kukaduku ",
+            "artist": "Mohit Chauhan",
+            "quote": "Teri Bhook Ka Ilaaj Chicken Kukdu-Ku",
+            "link": "dX3u15pmCcA"
+        },
+        {
+            "friend": "Raghav",
+            "song": "Atrangi Yaari",
+            "artist": "Amitabh Bachchan & Farhan Akhtar",
+            "quote": "Apni toh yaari Atrangi hai re!!",
+            "link": "tkvAU0fsFIw"
+        },
+        {
+            "friend": "Shantan",
+            "song": "Hold my hand ",
+            "artist": "Michael Jackson & Akon",
+            "quote": "\"Hold my hand , hold my hand\"",
+            "link": "-oCCnxBos10"
+        },
+        {
+            "friend": "Rhea",
+            "song": "I am a machine ",
+            "artist": "three days grace",
+            "quote": "I am machine, I never sleep, I keep my eyes wide open",
+            "link": "NmIBSeFhnfc"
+        },
+        {
+            "friend": "Dhruvtara",
+            "song": "bitches ain't shit",
+            "artist": "Dr. Dre",
+            "quote": "bitches ain't shit but hoes and tricks",
+            "link": "ke7vp_6xOME"
+        },
+        {
+            "friend": "Saif",
+            "song": "Walk",
+            "artist": "Foo Fighters",
+            "quote": "Learning to walk again, <br> I believe I've waited long enough, <br> Where do I begin?",
+            "link": "4PkcfQtibmU",
+            "offset": "1:18"
+        },
+        {
+            "friend": "Nair",
+            "song": "Do I Wanna Know?",
+            "artist": "Arctic Monkeys",
+            "quote": "<bold>Do I wanna know?</bold>",
+            "link": "bpOSxM0rNPM"
+        },
+        {
+            "friend": "Karle",
+            "song": "Headstrong",
+            "artist": "Trapt",
+            "quote": "I see your motives inside, <br> Decisions to hide",
+            "link": "HTvu1Yr3Ohk"
+        },
+        {
+            "friend": "Shivom",
+            "song": "Love the way you lie",
+            "artist": "Eminem ft. Rihanna",
+            "quote": "Just gonna stand there and watch me burn...",
+            "link": "uelHwf8o7_U"
+        },
+        {
+            "friend": "Rama",
+            "song": "Don't Stop The Music",
+            "artist": "Rihanna",
+            "quote": "It's gettin' late, I'm making my way over to my favorite place, <br> I gotta get my body moving, shake the stress away <br> I wasn't looking for nobody when you looked my way.. <br>Possible candidate. <br>P.S. Everybody knows what Jai's favorite place is.",
+            "link": "yd8jh9QYfEs"
+        },
+        {
+            "friend": "Ipshita",
+            "song": "Excercise (from Prem Aggan)",
+            "artist": "Priscilla Corner",
+            "quote": "Girls do it, so do boysss.... (Ah ah ah ah)... Excerciseeee",
+            "link": "xNZPO21_aTU",
+            "offset": "2:12"
+        },
+        {
+            "friend": "Tanvi",
+            "song": "Jamaica Farewell",
+            "artist": "Harry Belafonte",
+            "quote": "But I'm sad to say I'm on my way, <br> Won't be back for many a day, <br> My heart is down, my head is turning around <br> I had to leave a little girl in Kingston town",
+            "link": "Ch4ckcyjzKE"
+        },
+        {
+            "friend": "Saloni ",
+            "song": "The Downeaster Alexa",
+            "artist": "Billy Joel",
+            "quote": "Now I drive my Downeaster Alexa, <br> More and more miles from shore every year",
+            "link": "LVlDSzbrH5M"
+        }
 ];
