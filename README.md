@@ -1,12 +1,10 @@
 # birthday-bingo
-
-## Intro
 Play a game of Birthday Bingo! 
 
-### Song Bingo
+## Song Bingo
 Friends will choose songs for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the song for them, and unlock the final prize(usually a video) once you BINGO!
 
-#### Steps to configure:
+### Steps to configure:
 1. Collect a json array of data from friends and family with the following recommended fields: 
 
 ```json
