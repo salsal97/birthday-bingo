@@ -1,5 +1,5 @@
 let N1 = 4;
-let wrong_guess_threshold1 = 5;
+let wrong_guess_max1 = 5;
 let data1 = [
         {
             "friend": "Ali",

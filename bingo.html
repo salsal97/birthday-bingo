@@ -40,7 +40,7 @@
     <script type="text/javascript">
         var N = N1;
         var data = data1;
-        var wrong_guess_threshold = wrong_guess_threshold1;
+        var wrong_guess_max = wrong_guess_max1;
         var wrong_guesses = new Array(N * N).fill(0);
         var correct_guesses = 0;
 
@@ -127,7 +127,7 @@
                     }
                 } else {
                     wrong_guesses[i]++;
-                    if (wrong_guesses[i] >= wrong_guess_threshold) {
+                    if (wrong_guesses[i] >= wrong_guess_max) {
                         if (confirm("Cheat code activated. Would you like to know the answer?"))
                             alert("The correct answer is " + data[i].friend);
                     }
