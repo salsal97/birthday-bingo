@@ -46,7 +46,9 @@
 
         // generate/restart game
         function generate() {
+            document.getElementById("player").innerHTML = "";
             var node = document.getElementById("grid");
+            var usedPlayers = [];
 
             if (node.innerHTML && !confirm("Are you sure you want to regenerate?"))
                 return;
@@ -56,6 +58,14 @@
                 html += "<tr>"
                 for (var x = 0; x < N; x++) {
                     var obj = data[x + y * N];
+
+                    // pick a random player and add to list
+                    do {
+                        var i = Math.round(Math.random() * (N * N - 1));
+                        var player = data[i].friend;
+                    } while (usedPlayers.indexOf(player) >= 0);
+                    usedPlayers.push(player);
+                    document.getElementById("player").innerHTML += '<li id="player_' + i + '">' + player + '</li>';
 
                     // create a table object
                     html += '<td id="cell_' + x + '_' + y + '" >' +
@@ -84,7 +94,6 @@
         function cellClicked(id) {
             var c = document.getElementById("chk-" + id);
             var d = document.getElementById(id);
-            var leaderboard = document.getElementById("leaderboard");
             var temp = id.split("_");
             var i = Number(temp[1]) + Number(temp[2]) * N;
 
@@ -93,14 +102,16 @@
                 if (person == data[i].friend) {
                     d.innerHTML = data[i].friend.toUpperCase();
                     d.style.backgroundColor = "#114C80";
-                    leaderboard.innerHTML += data[i].friend + ", ";
+                    var player = document.getElementById("player_" + i);
+                    player.innerHTML = "<s>" + player.innerHTML + "</s>";
                     correct_guesses++;
 
-                    if (correct_guesses == 1) {
+                    if (correct_guesses == 2) {
+                        document.getElementById("player_list").innerHTML = "";
                         document.getElementById("grid").innerHTML = '<h1 style="background:#0A7328"> Congratulations! Your prize is loading ...</h1>';
-                        document.getElementById("leaderboard").innerHTML = '<h1 style="background:white"> </h1>';
+                        var elem = document.getElementById("progress_bar");
+                        elem.innerHTML = '<h1 style="background:white"> </h1>';
 
-                        var elem = document.getElementById("leaderboard");
                         var width = 1;
                         var id = setInterval(frame, 100);
 
@@ -135,10 +146,7 @@
                 for (var x = 0; x < N; x++) {
                     var id = 'cell_' + x + '_' + y;
                     var c = document.getElementById("chk-" + id);
-                    if (id1.localeCompare(id) != 0)
-                        save("bingo." + id1 + "--------" + id, c.checked);
-                    else
-                        save("bingo." + id + "_" + person, c.checked);
+                    save("bingo." + id + "_" + c.checked);
                 }
             }
         }
@@ -213,19 +221,22 @@ You do not have JavaScript enabled. JavaScript must be enabled for this applicat
             <li>Click <strong>Refresh</strong> to create your Bingo board.</li>
             <li>In the boxes you see the name of a song, its artist, and a quote from the song that someone chose for you </li>
             <li>Click on the <i class="fab fa-youtube"></i> in the box to play the song </li>
-            <li><strong>Click on the <i class="fas fa-dice"></i> in the box to guess who chose this song! </strong></li>
+            <li><strong>Click on the <i class="fas fa-dice"></i> in the box to guess who chose this song </strong></li>
             <li>If your guess is right, the box will change color and display the name of the person (: </li>
             <li>If your guess is wrong, the box will show you your incorrect guess to help you narrow your search </li>
-            <li>HINT: The main page of this website should be populated with the people who participated! We restricted this to first names to make it easy </li>
+            <li>HINT: The roster on the left of the grid has names of the people who participated! We restricted this to first names to make it easy. Hit refresh if it hasn't been populated yet </li>
+            <li>Good luck, maybe time yourself?</li>
         </ol>
+    </div>
+    <div style="float:left" id="player_list">
+        <h2 style="margin-bottom:0">Roster</h2>
+        <ul id="player"></ul>
     </div>
     <form>
         <input type="button" value="Refresh" onClick="generate();" />
     </form>
     <div id="grid"></div>
-    <div id="leaderboard">
-        <h2>Correct guesses</h2>
-    </div>
+    <div id="progress_bar"></div>
 </body>
 
 </html>

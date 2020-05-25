@@ -70,3 +70,10 @@ form {
     padding: 20px;
     text-align: left;
 }
+
+ul,
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
