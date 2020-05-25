@@ -18,10 +18,11 @@ Friends will choose songs for the birthday boy/girl to guess. The birthday boy/g
     "link": "youtube-hash"
 }
 ```
-2. Populate [this](data/songs.json) file 
-    a. put the json array under `data1` 
-    b. the number of rows and columns in the bingo grid under `N1` (For this version, number of rows = number of columns)
-    c. put the number of wrong guesses you would like to allow before the person is asked if they want to give up under `wrong_guess_max1`
+
+2. Populate [this](data/songs.json) file <br/>
+    a. put the json array under `data1` <br/>
+    b. the number of rows and columns in the bingo grid under `N1` (For this version, number of rows = number of columns)<br/>
+    c. put the number of wrong guesses you would like to allow before the person is asked if they want to give up under `wrong_guess_max1`<br/>
 
 3. Configure a prize! Put the embedded code for the prize video in the iframe in [this](prize.html) file
 
