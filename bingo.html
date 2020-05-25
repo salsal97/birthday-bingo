@@ -60,7 +60,7 @@
                     html += '<td id="cell_' + x + '_' + y + '" >' +
                         '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + "')\"> <i class=\"fas fa-dice\"></i></span>" +
                         "\t" + obj.song + " - " + obj.artist +
-                        "<br>" + '<span class="videoLink"><i class="fab fa-youtube"></i></span>' + "\t" + obj.quote +
+                        "<br>" + '<a href="' + obj.link + '" style="color:lightgrey"><i class="fab fa-youtube"></i></a>' + "\t" + obj.quote +
                         "</td>";
                 }
                 html += "</tr>"
