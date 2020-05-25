@@ -40,8 +40,9 @@
     <script type="text/javascript">
         var N = N1;
         var data = data1;
-        var wrong_guesses = new Array(N * N).fill(0);
         var wrong_guess_threshold = wrong_guess_threshold1;
+        var wrong_guesses = new Array(N * N).fill(0);
+        var correct_guesses = 0;
 
         // generate/restart game
         function generate() {
@@ -93,10 +94,30 @@
                     d.innerHTML = data[i].friend.toUpperCase();
                     d.style.backgroundColor = "#114C80";
                     leaderboard.innerHTML += data[i].friend + ", ";
+                    correct_guesses++;
+
+                    if (correct_guesses == 1) {
+                        document.getElementById("grid").innerHTML = '<h1 style="background:#0A7328"> Congratulations! Your prize is loading ...</h1>';
+                        document.getElementById("leaderboard").innerHTML = '<h1 style="background:white"> </h1>';
+
+                        var elem = document.getElementById("leaderboard");
+                        var width = 1;
+                        var id = setInterval(frame, 100);
+
+                        function frame() {
+                            if (width >= 100) {
+                                clearInterval(id);
+                                window.location.replace("prize.html");
+                            } else {
+                                width++;
+                                elem.style.width = width + '%';
+                            }
+                        }
+                    }
                 } else {
                     wrong_guesses[i]++;
                     if (wrong_guesses[i] >= wrong_guess_threshold) {
-                        if (confirm("Would you like to give up?"))
+                        if (confirm("Cheat code activated. Would you like to know the answer?"))
                             alert("The correct answer is " + data[i].friend);
                     }
                     d.style.backgroundColor = "#E69D29";
@@ -202,8 +223,9 @@ You do not have JavaScript enabled. JavaScript must be enabled for this applicat
         <input type="button" value="Refresh" onClick="generate();" />
     </form>
     <div id="grid"></div>
-    <h2>Correct guesses</h2>
-    <div id="leaderboard"></div>
+    <div id="leaderboard">
+        <h2>Correct guesses</h2>
+    </div>
 </body>
 
 </html>
