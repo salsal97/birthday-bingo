@@ -1,6 +1,8 @@
 <!--
-Authors: Saloni Goel & Abhinav Nair, 2020
-Previous Author: Werner Stoop, 2012
+    There's no place like ~
+
+    Authors: Saloni Goel & Abhinav Nair, 2020
+    Previous Author: Werner Stoop, 2012
 -->
 <html>
 
@@ -15,6 +17,23 @@ Previous Author: Werner Stoop, 2012
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="bingo.css">
     <script src="songs.txt"></script>
+
+    <!-- Disable right click http://www.spacegun.co.uk -->
+    <script language=JavaScript>
+        var message = "Haha, really?";
+
+        function rtclickcheck(keyp) {
+            if (navigator.appName == "Netscape" && keyp.which == 3) {
+                alert(message);
+                return false;
+            }
+            if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) {
+                alert(message);
+                return false;
+            }
+        }
+        document.onmousedown = rtclickcheck;
+    </script>
 
     <title>Song Bingo</title>
 
