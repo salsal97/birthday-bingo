@@ -97,7 +97,7 @@
             var temp = id.split("_");
             var i = Number(temp[1]) + Number(temp[2]) * N;
 
-            var person = prompt("Enter the name of the friend " + data[i].friend).toLowerCase();
+            var person = prompt("Enter the name of the friend");
             if (person != null) {
                 if (person == data[i].friend) {
                     d.innerHTML = data[i].friend.toUpperCase();
