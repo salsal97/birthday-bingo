@@ -17,7 +17,7 @@ Friends will choose songs for the birthday boy/girl to guess. The birthday boy/g
 }
 ```
 
-2. Populate [this](data/songs.json) file <br/>
+2. Populate [this](data/songs.txt) file <br/>
     a. put the json array under `data1` <br/>
     b. the number of rows and columns in the bingo grid under `N1` (For this version, number of rows = number of columns)<br/>
     c. put the number of wrong guesses you would like to allow before the person is asked if they want to give up under `wrong_guess_max1`<br/>
