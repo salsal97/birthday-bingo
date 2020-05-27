@@ -16,7 +16,7 @@
 
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="bingo.css">
-    <script src="data/songs.txt"></script>
+    <script src="data/quotes.txt"></script>
 
     <!-- Disable right click http://www.spacegun.co.uk -->
     <script language=JavaScript>
@@ -35,7 +35,7 @@
         document.onmousedown = rtclickcheck;
     </script>
 
-    <title>Song Bingo</title>
+    <title>Quote Bingo</title>
 
     <script type="text/javascript">
         var N = N1;
@@ -69,8 +69,7 @@
                     // create a table object
                     html += '<td id="cell_' + x + '_' + y + '" >' +
                         '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + "')\"> <i class=\"fas fa-dice\"></i></span>" +
-                        "\t" + obj.song + " - " + obj.artist +
-                        "<br>" + '<span onClick="openPlayer(\'cell_' + x + '_' + y + "')\"><i class=\"fab fa-youtube\"></i></span>" + "\t" + obj.quote + "</td>";
+                        "\t" + obj.quote + "</td>";
                 }
                 html += "</tr>"
             }
@@ -101,7 +100,7 @@
             if (person != null) {
                 if (person.toLowerCase() == data[i].friend.toLowerCase()) {
                     d.innerHTML = data[i].friend.toUpperCase();
-                    d.style.backgroundColor = "#114C80";
+                    d.style.backgroundColor = "#006FC4";
                     var player = document.getElementById("player_" + i);
                     player.innerHTML = "<s>" + player.innerHTML + "</s>";
                     correct_guesses++;
@@ -218,7 +217,7 @@
 </head>
 
 <body onLoad="start()">
-    <h1>Song Bingo</h1>
+    <h1>Quote Bingo</h1>
 
     <p>An exciting game for your quarantine birthday!<a href="javascript:toggle('instructions');"> Instructions...</a>
     </p>
