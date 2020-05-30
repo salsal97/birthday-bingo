@@ -18,7 +18,7 @@ Steps to really select it:
 3. Save all three files!
 
 ## Song Bingo
-Friends will choose songs for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the song for them, and unlock the final [prize](#Configuring-the-prize) once you BINGO!
+Friends will choose songs for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the song for them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!
 
 ### Steps to configure:
 
@@ -48,6 +48,33 @@ Friends will choose songs for the birthday boy/girl to guess. The birthday boy/g
 
 6. BINGO! Send your website link to the birthday boy/girl and get on a video call, ask them to share their screen, and play this game of bingo!
 
+## Quote Bingo
+Friends will choose quotes for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the quote for them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!
+
+### Steps to configure:
+
+1. Make sure you have selected the right bingo by following [this](#Select-your-bingo)
+
+2. Collect a json array of data from friends and family with the following recommended fields: 
+
+```json
+{
+    "friend": "Nair",
+    "quote": "\"Long walks can mend anything\""
+}
+```
+
+3. Populate [this](data/quotes.txt) file <br/>
+    a. put the json array under `data1` <br/>
+    b. the number of rows and columns in the bingo grid under `N1` (For this version, number of rows = number of columns)<br/>
+    c. put the number of wrong guesses you would like to allow before the person is asked if they want to give up under `wrong_guess_max1`<br/>
+    d. OPTIONAL: If you would like to change the theme of the website, tackle [this](data/quotes.css) file.
+
+4. [Configure a prize!](#Configuring-the-prize)
+
+5. Upload this code to a web app server (we chose [Microsoft Azure](https://portal.azure.com))
+
+6. BINGO! Send your website link to the birthday boy/girl and get on a video call, ask them to share their screen, and play this game of bingo!
 
 ## Configuring the prize
 
