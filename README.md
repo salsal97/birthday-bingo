@@ -18,7 +18,7 @@ Steps to really select it:
 3. Save all three files!
 
 ## Song Bingo
-Friends will choose songs for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the song for them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!
+Friends will choose songs for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the song for them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!<br/>
 eg: birthday-bingo.azurewebsites.net
 
 ### Steps to configure:
@@ -50,7 +50,7 @@ eg: birthday-bingo.azurewebsites.net
 6. BINGO! Send your website link to the birthday boy/girl and get on a video call, ask them to share their screen, and play this game of bingo!
 
 ## Quote Bingo
-Friends will choose quotes for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the quote for them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!
+Friends will choose quotes for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the quote for them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!<br/>
 eg: quote-bingo.azurewebsites.net
 
 ### Steps to configure:
