@@ -19,6 +19,7 @@ Steps to really select it:
 
 ## Song Bingo
 Friends will choose songs for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the song for them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!
+eg: birthday-bingo.azurewebsites.net
 
 ### Steps to configure:
 
@@ -50,6 +51,7 @@ Friends will choose songs for the birthday boy/girl to guess. The birthday boy/g
 
 ## Quote Bingo
 Friends will choose quotes for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the quote for them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!
+eg: quote-bingo.azurewebsites.net
 
 ### Steps to configure:
 
