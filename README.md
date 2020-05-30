@@ -58,12 +58,12 @@ a. Navigate to the video you want to embed as a prize. Eg: Link = https://www.yo
 b. Copy the part of the link that comes after `v=` (`_A70SfWAO18` in this case)<br/>
 c. Put it in [this](data/prize.txt) file in the `youtube_video_hash` variable (enclosed in quotes)
 
-2. Google drive video/picture
+2. Google drive video/picture<br/>
 a. Navigate to the video/picture you want to embed as a prize. Open it in a new window. You will see a link eg: https://drive.google.com/file/d/1J_sO-qjA4_42r_aDT-F1EAebZiSSo98u/view <br/>
 b. Copy the part of the link that comes between `/d/` and `/view` (`1J_sO-qjA4_42r_aDT-F1EAebZiSSo98u` in this case)<br/>
 c. Put it in [this](data/prize.txt) file in the `google_drive_media_hash` variable (enclosed in quotes)
 
-3. Simple link to another website
+3. Simple link to another website<br/>
 a. Put the link in [this](data/prize.txt) file in the `hyperlink` variable (enclosed in quotes)<br/>
 b. Put the text you want the link to appear as in [the same](data/prize.txt) file in the `hyperlink_text` variable (enclosed in quotes)<br/>
 
