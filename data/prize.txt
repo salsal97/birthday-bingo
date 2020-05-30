@@ -1,0 +1,4 @@
+let google_drive_media_hash = "";
+let youtube_video_hash = "_Am0SfWAO18";
+let hyperlink = "https://www.amazon.com/gcx/Gifts-for-Everyone/gfhz/";
+let hyperlink_text = "Gifts for Everyone";

@@ -15,7 +15,9 @@
     <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
 
     <!-- css -->
-    <link rel="stylesheet" type="text/css" href="bingo.css">
+    <link rel="stylesheet" type="text/css" href="" id="insert-style">
+
+    <!-- include data -->
     <script src="data/songs.txt"></script>
 
     <!-- Disable right click http://www.spacegun.co.uk -->
@@ -35,9 +37,10 @@
         document.onmousedown = rtclickcheck;
     </script>
 
-    <title>Song Bingo</title>
+    <title>Birthday Bingo</title>
 
     <script type="text/javascript">
+        document.getElementById("insert-style").href = style_file;
         var N = N1;
         var data = data1;
         var wrong_guess_max = wrong_guess_max1;
@@ -66,11 +69,26 @@
                     usedPlayers.push(player);
                     document.getElementById("player").innerHTML += '<li id="player_' + i + '">' + player + '</li>';
 
-                    // create a table object
-                    html += '<td id="cell_' + x + '_' + y + '" >' +
-                        '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + "')\"> <i class=\"fas fa-dice\"></i></span>" +
-                        "\t" + obj.song + " - " + obj.artist +
-                        "<br>" + '<span onClick="openPlayer(\'cell_' + x + '_' + y + "')\"><i class=\"fab fa-youtube\"></i></span>" + "\t" + obj.quote + "</td>";
+                    // index table obj start 
+                    table_obj = '<td id="cell_' + x + '_' + y + '" >';
+
+                    // guess icon
+                    table_obj += '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + "')\"> <i class=\"fas fa-dice\"></i></span>";
+
+                    // add song name and artist
+                    if (type == "song") {
+                        table_obj += "\t" + obj.song + " - " + obj.artist;
+                        table_obj += "<br>" + '<span onClick="openPlayer(\'cell_' + x + '_' + y + "')\"><i class=\"fab fa-youtube\"></i></span>";
+                    }
+
+                    // quote
+                    if (type == "quote" || type == "song")
+                        table_obj += "\t" + obj.quote;
+
+                    // end table object
+                    table_obj += "</td>";
+
+                    html += table_obj;
                 }
                 html += "</tr>"
             }
@@ -101,7 +119,7 @@
             if (person != null) {
                 if (person.toLowerCase() == data[i].friend.toLowerCase()) {
                     d.innerHTML = data[i].friend.toUpperCase();
-                    d.style.backgroundColor = "#114C80";
+                    d.style.backgroundColor = "#006FC4";
                     var player = document.getElementById("player_" + i);
                     player.innerHTML = "<s>" + player.innerHTML + "</s>";
                     correct_guesses++;
@@ -194,6 +212,8 @@
         };
 
         function start() {
+            document.getElementById("heading").innerHTML = bingo_heading;
+            document.getElementById("specific-instructions").innerHTML = specific_instructions1;
             if (supports_html5_storage()) {
                 save = function(key, value) {
                     localStorage.setItem(key, value);
@@ -218,7 +238,7 @@
 </head>
 
 <body onLoad="start()">
-    <h1>Song Bingo</h1>
+    <h1 id="heading"></h1>
 
     <p>An exciting game for your quarantine birthday!<a href="javascript:toggle('instructions');"> Instructions...</a>
     </p>
@@ -239,13 +259,11 @@
                 <li>Enable JavaScript</li>
             </noscript>
             <li>Click <strong>Refresh</strong> to create your Bingo board.</li>
-            <li>In the boxes you see the name of a song, its artist, and a quote from the song that someone chose for you </li>
-            <li>Click on the <i class="fab fa-youtube"></i> in the box to play the song </li>
-            <li><strong>Click on the <i class="fas fa-dice"></i> in the box to guess who chose this song </strong></li>
+            <li id="specific-instructions"></li>
             <li>If your guess is right, the box will change color and display the name of the person (: </li>
             <li>If your guess is wrong, the box will show you your incorrect guess to help you narrow your search </li>
-            <li>HINT: The roster on the left of the grid has names of the people who participated! We restricted this to first names to make it easy. Hit refresh if it hasn't been populated yet </li>
-            <li>Good luck, maybe time yourself?</li>
+            <li>HINT: The roster on the left of the grid has names of the people who participated! Hit refresh if it hasn't been populated yet </li>
+            <li>Good luck, maybe time yourself? May the force be with you</li>
         </ol>
     </div>
 
