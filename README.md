@@ -53,19 +53,19 @@ Friends will choose songs for the birthday boy/girl to guess. The birthday boy/g
 
 Your prize can be a youtube video, and/or a google drive video or picture, and/or a simple link to another webpage. It can be one or two or all of them. Exactly how to configure this is described below.
 
-1. Youtube links
-a. Navigate to the video you want to embed as a prize. Eg: Link = https://www.youtube.com/watch?v=_A70SfWAO18
-b. Copy the part of the link that comes after `v=` (`_A70SfWAO18` in this case)
+1. Youtube links<br/>
+a. Navigate to the video you want to embed as a prize. Eg: Link = https://www.youtube.com/watch?v=_A70SfWAO18<br/>
+b. Copy the part of the link that comes after `v=` (`_A70SfWAO18` in this case)<br/>
 c. Put it in [this](data/prize.txt) file in the `youtube_video_hash` variable (enclosed in quotes)
 
 2. Google drive video/picture
-a. Navigate to the video/picture you want to embed as a prize. Open it in a new window. You will see a link eg: https://drive.google.com/file/d/1J_sO-qjA4_42r_aDT-F1EAebZiSSo98u/view
-b. Copy the part of the link that comes between `/d/` and `/view` (`1J_sO-qjA4_42r_aDT-F1EAebZiSSo98u` in this case)
+a. Navigate to the video/picture you want to embed as a prize. Open it in a new window. You will see a link eg: https://drive.google.com/file/d/1J_sO-qjA4_42r_aDT-F1EAebZiSSo98u/view <br/>
+b. Copy the part of the link that comes between `/d/` and `/view` (`1J_sO-qjA4_42r_aDT-F1EAebZiSSo98u` in this case)<br/>
 c. Put it in [this](data/prize.txt) file in the `google_drive_media_hash` variable (enclosed in quotes)
 
 3. Simple link to another website
-a. Put the link in [this](data/prize.txt) file in the `hyperlink` variable (enclosed in quotes)
-b. Put the text you want the link to appear as in [the same](data/prize.txt) file in the `hyperlink_text` variable (enclosed in quotes)
+a. Put the link in [this](data/prize.txt) file in the `hyperlink` variable (enclosed in quotes)<br/>
+b. Put the text you want the link to appear as in [the same](data/prize.txt) file in the `hyperlink_text` variable (enclosed in quotes)<br/>
 
 ## Credits
 Saloni Goel and Abhinav Nair, 2020
