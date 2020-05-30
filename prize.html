@@ -1,0 +1,68 @@
+<!--
+    There's no place like ~
+
+    Author: Saloni Goel, 2020
+-->
+
+<html>
+
+<head>
+    <title>Happy Birthday!</title>
+
+    <!-- include data -->
+    <script src="data/songs.txt"></script>
+    <link rel="stylesheet" type="text/css" href="" id="insert-style">
+    <script type="text/javascript">
+        document.getElementById("insert-style").href = style_file;
+    </script>
+
+    <script src="data/prize.txt"></script>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
+    <link rel="icon" href="https://img.icons8.com/flat_round/64/000000/whale--v1.png">
+</head>
+
+<body>
+    <h1>Happy Birthday!</h1>
+
+    <noscript>
+    <div class="error">
+    <strong>Problem:</strong>
+    <p><em>
+    You do not have JavaScript enabled. JavaScript must be enabled for this application to work.
+    </em></p>
+    </div>
+    </noscript>
+
+    <iframe id="drive" src="" width="640" height="480" style="display: none; margin:auto;"></iframe>
+
+    <br><br>
+
+    <iframe id="youtube" src="" width="640" height="480" style="display: none; margin:auto;"></iframe>
+
+    <br><br>
+
+    <h2>
+        <a href="" id="link" style="display: none;"></a>
+    </h2>
+
+    <script>
+        if (hyperlink) {
+            document.getElementById("link").style.display = "block";
+            document.getElementById("link").href = hyperlink;
+            if (hyperlink_text) document.getElementById("link").innerHTML = hyperlink_text;
+        }
+
+        if (google_drive_media_hash) {
+            document.getElementById("drive").style.display = "block";
+            document.getElementById("drive").src = "https://drive.google.com/file/d/" + google_drive_media_hash + "/preview";
+        }
+
+        if (youtube_video_hash) {
+            document.getElementById("youtube").style.display = "block";
+            document.getElementById("youtube").src = "https://www.youtube.com/embed/" + youtube_video_hash;
+        }
+    </script>
+</body>
+
+</html>

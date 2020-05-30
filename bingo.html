@@ -1,0 +1,287 @@
+<!--
+    There's no place like ~
+
+    Authors: Saloni Goel & Abhinav Nair, 2020
+    Previous Author: Werner Stoop, 2012
+-->
+<html>
+
+<head>
+    <!-- browser icon -->
+    <script src="https://kit.fontawesome.com/39896120a5.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
+
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="" id="insert-style">
+
+    <!-- include data -->
+    <script src="data/songs.txt"></script>
+
+    <!-- Disable right click http://www.spacegun.co.uk -->
+    <script language=JavaScript>
+        var message = "Haha, really?";
+
+        function rtclickcheck(keyp) {
+            if (navigator.appName == "Netscape" && keyp.which == 3) {
+                alert(message);
+                return false;
+            }
+            if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) {
+                alert(message);
+                return false;
+            }
+        }
+        document.onmousedown = rtclickcheck;
+    </script>
+
+    <title>Birthday Bingo</title>
+
+    <script type="text/javascript">
+        document.getElementById("insert-style").href = style_file;
+        var N = N1;
+        var data = data1;
+        var wrong_guess_max = wrong_guess_max1;
+        var wrong_guesses = new Array(N * N).fill(0);
+        var correct_guesses = 0;
+
+        // generate/restart game
+        function generate() {
+            document.getElementById("player").innerHTML = "";
+            var node = document.getElementById("grid");
+            var usedPlayers = [];
+
+            if (node.innerHTML && !confirm("Are you sure you want to regenerate?"))
+                return;
+
+            var html = '<table border="0">';
+            for (var y = 0; y < N; y++) {
+                html += "<tr>"
+                for (var x = 0; x < N; x++) {
+                    var obj = data[x + y * N];
+
+                    do {
+                        var i = Math.round(Math.random() * (N * N - 1));
+                        var player = data[i].friend;
+                    } while (usedPlayers.indexOf(player) >= 0);
+                    usedPlayers.push(player);
+                    document.getElementById("player").innerHTML += '<li id="player_' + i + '">' + player + '</li>';
+
+                    // index table obj start 
+                    table_obj = '<td id="cell_' + x + '_' + y + '" >';
+
+                    // guess icon
+                    table_obj += '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + "')\"> <i class=\"fas fa-dice\"></i></span>";
+
+                    // add song name and artist
+                    if (type == "song") {
+                        table_obj += "\t" + obj.song + " - " + obj.artist;
+                        table_obj += "<br>" + '<span onClick="openPlayer(\'cell_' + x + '_' + y + "')\"><i class=\"fab fa-youtube\"></i></span>";
+                    }
+
+                    // quote
+                    if (type == "quote" || type == "song")
+                        table_obj += "\t" + obj.quote;
+
+                    // end table object
+                    table_obj += "</td>";
+
+                    html += table_obj;
+                }
+                html += "</tr>"
+            }
+            html += "</table>";
+            node.innerHTML = html;
+            save("bingo.grid", html);
+            saveGameState();
+        }
+
+        /* http://diveintohtml5.info/storage.html */
+        function supports_html5_storage() {
+            try {
+                return 'localStorage' in window && window['localStorage'] !== null;
+            } catch (e) {
+                return false;
+            }
+        }
+
+
+        function cellClicked(id) {
+            var c = document.getElementById("chk-" + id);
+            var d = document.getElementById(id);
+
+            var temp = id.split("_");
+            var i = Number(temp[1]) + Number(temp[2]) * N;
+
+            var person = prompt("Enter the name of the friend");
+            if (person != null) {
+                if (person.toLowerCase() == data[i].friend.toLowerCase()) {
+                    d.innerHTML = data[i].friend.toUpperCase();
+                    d.style.backgroundColor = "#006FC4";
+                    var player = document.getElementById("player_" + i);
+                    player.innerHTML = "<s>" + player.innerHTML + "</s>";
+                    correct_guesses++;
+
+                    if (correct_guesses == N * N) {
+                        document.getElementById("player_list").innerHTML = "";
+                        document.getElementById("grid").innerHTML = '<h1 style="background:#0A7328"> Congratulations! Your prize is loading ...</h1>';
+                        var elem = document.getElementById("progress_bar");
+                        elem.innerHTML = '<h1 style="background:white"> </h1>';
+
+                        var width = 1;
+                        var id = setInterval(frame, 100);
+
+                        function frame() {
+                            if (width >= 100) {
+                                clearInterval(id);
+                                window.location.replace("prize.html");
+                            } else {
+                                width++;
+                                elem.style.width = width + '%';
+                            }
+                        }
+                    }
+                } else {
+                    wrong_guesses[i]++;
+                    if (wrong_guesses[i] >= wrong_guess_max) {
+                        if (confirm("Cheat code activated. Would you like to know the answer?"))
+                            alert("The correct answer is " + data[i].friend);
+                    }
+                    d.style.backgroundColor = "#E69D29";
+                    if (!d.innerHTML.endsWith(", ")) {
+                        d.innerHTML += "<br> Wrong guess: ";
+                    }
+                    d.innerHTML += person + ", ";
+                }
+            }
+            saveGameState();
+        }
+
+
+        //open YouTube embedded
+        function openPlayer(id) {
+            console.log("ID in openPlayer -> " + id);
+            var temp = id.split("_");
+            var i = Number(temp[1]) + Number(temp[2]) * N;
+            var youTubeCode = data[i].link;
+            console.log(youTubeCode);
+            var elem = document.getElementById("embeddedPlayer");
+            document.getElementById("youtubePlayer").src = "https://www.youtube.com/embed/" + youTubeCode;
+            if (elem.style.display == "block")
+                elem.style.display = "none";
+            else
+                elem.style.display = "block";
+        }
+
+
+        function saveGameState() {
+            for (var y = 0; y < N; y++) {
+                for (var x = 0; x < N; x++) {
+                    var id = 'cell_' + x + '_' + y;
+                    var c = document.getElementById("chk-" + id);
+                    save("bingo." + id, c.checked);
+                }
+            }
+        }
+
+        function loadGameState() {
+            for (var y = 0; y < N; y++) {
+                for (var x = 0; x < N; x++) {
+                    var id = 'cell_' + x + '_' + y;
+                    var c = document.getElementById("chk-" + id);
+                    c.checked = (load("bingo." + id) == 'true');
+                    var d = document.getElementById(id);
+                    d.className = (c.checked) ? "highlight" : "";
+                }
+            }
+        }
+
+        function toggle(id) {
+            var elem = document.getElementById(id);
+            if (elem.style.display == "block")
+                elem.style.display = "none";
+            else
+                elem.style.display = "block";
+        }
+
+        save = function(key, value) {};
+        load = function(key) {
+            return null
+        };
+
+        function start() {
+            document.getElementById("heading").innerHTML = bingo_heading;
+            document.getElementById("specific-instructions").innerHTML = specific_instructions1;
+            if (supports_html5_storage()) {
+                save = function(key, value) {
+                    localStorage.setItem(key, value);
+                };
+                load = function(key) {
+                    return localStorage.getItem(key);
+                };
+            } else {
+                alert("Your browser does not support localStorage.\nYou won't be able to persist the Bingo grid.\nUpgrading your browser may help.");
+                return;
+            }
+
+            var grid = load("bingo.grid");
+            if (grid) {
+                console.log("Loaded a previously generated grid");
+                var node = document.getElementById("grid");
+                node.innerHTML = grid;
+                loadGameState();
+            }
+        }
+    </script>
+</head>
+
+<body onLoad="start()">
+    <h1 id="heading"></h1>
+
+    <p>An exciting game for your quarantine birthday!<a href="javascript:toggle('instructions');"> Instructions...</a>
+    </p>
+
+    <noscript>
+        <div class="error">
+            <strong>Problem:</strong>
+            <p><em>
+                    You do not have JavaScript enabled. JavaScript must be enabled for this application to work.
+                </em></p>
+        </div>
+    </noscript>
+
+    <div id="instructions">
+        <h2>Instructions</h2>
+        <ol>
+            <noscript>
+                <li>Enable JavaScript</li>
+            </noscript>
+            <li>Click <strong>Refresh</strong> to create your Bingo board.</li>
+            <li id="specific-instructions"></li>
+            <li>If your guess is right, the box will change color and display the name of the person (: </li>
+            <li>If your guess is wrong, the box will show you your incorrect guess to help you narrow your search </li>
+            <li>HINT: The roster on the left of the grid has names of the people who participated! Hit refresh if it hasn't been populated yet </li>
+            <li>Good luck, maybe time yourself? May the force be with you</li>
+        </ol>
+    </div>
+
+    <div id="embeddedPlayer">
+        <iframe id="youtubePlayer" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>;
+    </div>
+
+    <div style="float:left" id="player_list">
+        <h2 style="margin-bottom:0">Roster</h2>
+        <ul id="player"></ul>
+    </div>
+
+    <form>
+        <input type="button" value="Refresh" onClick="generate();" />
+    </form>
+
+    <div id="grid"></div>
+    <div id="progress_bar"></div>
+</body>
+
+</html>
