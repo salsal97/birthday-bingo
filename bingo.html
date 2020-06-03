@@ -127,9 +127,6 @@
 
 
         function cellClicked(id) {
-            var c = document.getElementById("chk-" + id);
-            var d = document.getElementById(id);
-
             var temp = id.split("_");
             var i = Number(temp[1]) + Number(temp[2]) * N;
 
@@ -138,48 +135,74 @@
 
                 // correct guess
                 if (person.toLowerCase() == data[i].friend.toLowerCase()) {
-                    d.innerHTML = data[i].friend.toUpperCase();
-                    d.style.backgroundColor = correct_guess_color;
-                    var player = document.getElementById("player_" + i);
-                    player.innerHTML = "<s>" + player.innerHTML + "</s>";
-                    correct_guesses++;
-
-                    if (correct_guesses == N * N) {
-                        document.getElementById("player_list").innerHTML = "";
-                        document.getElementById("grid").innerHTML = '<h1 style="background:#0A7328"> Congratulations! Your prize is loading ...</h1>';
-                        var elem = document.getElementById("progress_bar");
-                        elem.innerHTML = '<h1 style="background:white"> </h1>';
-
-                        var width = 1;
-                        var id = setInterval(frame, 100);
-
-                        function frame() {
-                            if (width >= 100) {
-                                clearInterval(id);
-                                window.location.replace("prize.html");
-                            } else {
-                                width++;
-                                elem.style.width = width + '%';
-                            }
-                        }
-                    }
+                    correctGuess(id, i);
                 } else {
-                    // wrong guess
-                    wrong_guesses[i]++;
-                    if (wrong_guesses[i] >= wrong_guess_max) {
-                        if (confirm("Cheat code activated. Would you like to know the answer?"))
-                            alert("The correct answer is " + data[i].friend);
-                    }
-                    d.style.backgroundColor = wrong_guess_color;
-                    if (!d.innerHTML.endsWith(", ")) {
-                        d.innerHTML += "<br> Wrong guess: ";
-                    }
-                    d.innerHTML += person + ", ";
+                    wrongGuess(id, i, person);
                 }
             }
             saveGameState();
         }
 
+        function correctGuess(id, i) {
+            correct_guesses++;
+            var d = document.getElementById(id);
+
+            // Change content in box 
+            if (type == "photo")
+                d.innerHTML = '<img src ="' + data[i].photo_full + '" alt="cropped photo here" />';
+            else
+                d.innerHTML = data[i].friend.toUpperCase();
+            d.style.backgroundColor = correct_guess_color;
+
+            // Strike out player
+            var player = document.getElementById("player_" + i);
+            player.innerHTML = "<s>" + player.innerHTML + "</s>";
+
+            // Check for BINGO
+            if (correct_guesses == N * N) {
+                onBingo();
+            }
+        }
+
+        function wrongGuess(id, i, person) {
+            wrong_guesses[i]++;
+
+            // Add name of wrong guess to tile 
+            var d = document.getElementById(id);
+            d.style.backgroundColor = wrong_guess_color;
+            if (!d.innerHTML.endsWith(", ")) {
+                d.innerHTML += "<br> Wrong guess: ";
+            }
+            d.innerHTML += person + ", ";
+
+            // Offer an escape 
+            if (wrong_guesses[i] >= wrong_guess_max) {
+                if (confirm("Cheat code activated. Would you like to know the answer?")) {
+                    alert("The correct answer is " + data[i].friend);
+                    correctGuess(id, i);
+                }
+            }
+        }
+
+        function onBingo() {
+            document.getElementById("player_list").innerHTML = "";
+            document.getElementById("grid").innerHTML = '<h1 style="background:#0A7328"> Congratulations! Your prize is loading ...</h1>';
+            var elem = document.getElementById("progress_bar");
+            elem.innerHTML = '<h1 style="background:white"> </h1>';
+
+            var width = 1;
+            var id = setInterval(frame, 100);
+
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id);
+                    window.location.replace("prize.html");
+                } else {
+                    width++;
+                    elem.style.width = width + '%';
+                }
+            }
+        }
 
         //open YouTube embedded
         function openPlayer(id) {
@@ -287,33 +310,7 @@
             <li>Good luck, maybe time yourself? May the force be with you</li>
         </ol>
     </div>
-    <!-- <td id="cell_' + x + '_' + y + '" >';
 
-        // // adding guess function
-        // table_obj += '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + "')\">";
-
-        // adding clickable dice icon
-        if (type == "quote" || type == "song")
-            table_obj += '<i class=\"fas fa-dice\"></i>';
-
-        // adding clickable image
-        // if (type == "photo")
-        // table_obj += '<img src="https://drive.google.com/file/d/' + obj.photo_cropped + '/preview" />';
-        // table_obj += '<img src ="' + obj.photo_cropped + '" alt="cropped photo here" />';
-
-        // // close guess function
-        // table_obj += '</span>'; -->
-
-    <!-- <table border="0">
-        <tr>
-            <td id="cell_0_0"><span id="chk-cell_0_0" onclick="cellClicked('cell_0_0')"><img src="data/images/Ali_cropped.jpg" alt="cropped photo here" /></span></td>
-            <td><img src="data/images/Ali_cropped.jpg" alt="cropped photo here" /></td>
-        </tr>
-        <tr>
-            <td><img src="data/images/Ali_cropped.jpg" alt="cropped photo here" /></td>
-            <td><img src="data/images/Ali_cropped.jpg" alt="cropped photo here" /></td>
-        </tr>
-    </table> -->
     <div id="embeddedPlayer">
         <iframe id="youtubePlayer" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>;
     </div>
