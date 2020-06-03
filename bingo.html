@@ -16,6 +16,7 @@
 
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="" id="insert-style">
+    <link rel="stylesheet" type="text/css" href="data/bingo.css">
 
     <!-- include data -->
     <script src="data/photos.txt"></script>
@@ -104,12 +105,10 @@
                     // end table object
                     table_obj += "</td>";
 
-                    console.log(table_obj);
                     html += table_obj;
                 }
                 html += "</tr>"
             }
-            console.log(html);
             html += "</table>";
             node.innerHTML = html;
             save("bingo.grid", html);
@@ -148,9 +147,12 @@
             var d = document.getElementById(id);
 
             // Change content in box 
-            if (type == "photo")
-                d.innerHTML = '<img src ="' + data[i].photo_full + '" alt="cropped photo here" />';
-            else
+            if (type == "photo") {
+                var popupModal = document.getElementById("popupModal");
+                var modalImage = document.getElementById("modalImage");
+                popupModal.style.display = "block";
+                modalImage.src = data[i].photo_full;
+            } else
                 d.innerHTML = data[i].friend.toUpperCase();
             d.style.backgroundColor = correct_guess_color;
 
@@ -278,6 +280,12 @@
                 loadGameState();
             }
         }
+
+        function closeModal() {
+            var modal = document.getElementById("popupModal");
+            modal.style.display = "none";
+        }
+
     </script>
 </head>
 
@@ -324,6 +332,13 @@
         <input type="button" value="Refresh" onClick="generate();" />
     </form>
 
+    <div id="popupModal" class="modal">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+      
+        <img class="modal-content" id="modalImage">
+      
+      </div>
     <div id="grid"></div>
     <div id="progress_bar"></div>
 </body>
