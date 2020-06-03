@@ -3,6 +3,8 @@ let style_file = "data/quotes.css";
 let bingo_heading = "Quote Bingo";
 let N1 = 4; //Number of rows and columns
 let wrong_guess_max1 = 3;
+let wrong_guess_color = "#E69D29";
+let correct_guess_color = "#006FC4";
 let specific_instructions1 = "In the boxes you see a quote that one of your friends chose for you</li><li><strong>Click on the <i class=\"fas fa-dice\"></i> in the box to guess the name of the person who wrote the quote </strong>";
 let data1 = [
     {
@@ -69,4 +71,4 @@ let data1 = [
         "friend": "Trisha",
         "quote": "\"For being this warm friendly face that's so easy to open up to\""
     }
-]
+];

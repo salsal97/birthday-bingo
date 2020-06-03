@@ -1,0 +1,172 @@
+let type = "photo";
+let style_file = "data/photos.css";
+let bingo_heading = "Photo Bingo";
+let N1 = 4; //Number of rows and columns
+let wrong_guess_max1 = 3;
+let wrong_guess_color = "#E69D29";
+let correct_guess_color = "#114C80";
+let specific_instructions1 = "In the boxes you see your face. Well actually its a part of a picture, taken with you and someone else</li><li><strong>Click on the image itself to guess the name of the person who was in this picture with you</strong>"
+let data2 = [
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "1J4rsQjwV0xKnKLM8ed0FoZ7DgkSJiJXz/preview",
+        "photo_full": "1-SehFCy2zB71sQU88ovd9Mg8apyxpQw6"
+    }
+];
+let data1 = [
+    {
+        "friend": "Ali",
+        "photo_cropped": "data/images/Ali_cropped.jpg",
+        "photo_full": "data/images/Ali_full.jpg"
+    },
+    {
+        "friend": "Anmol",
+        "photo_cropped": "data/images/Anmol_cropped.jpg",
+        "photo_full": "data/images/Anmol_full.jpg"
+    },
+    {
+        "friend": "Deepti",
+        "photo_cropped": "data/images/Deepti_cropped.jpg",
+        "photo_full": "data/images/Deepti_full.jpg"
+    },
+    {
+        "friend": "Disha",
+        "photo_cropped": "data/images/Disha_cropped.jpg",
+        "photo_full": "data/images/Disha_full.jpg"
+    },
+    {
+        "friend": "Faiz",
+        "photo_cropped": "data/images/Faiz_cropped.jpg",
+        "photo_full": "data/images/Faiz_full.jpg"
+    },
+    {
+        "friend": "Isha",
+        "photo_cropped": "data/images/Isha_cropped.jpg",
+        "photo_full": "data/images/Isha_full.jpg"
+    },
+    {
+        "friend": "Jai",
+        "photo_cropped": "data/images/Jai_cropped.jpg",
+        "photo_full": "data/images/Jai_full.jpg"
+    },
+    {
+        "friend": "Ketan",
+        "photo_cropped": "data/images/Ketan_cropped.jpg",
+        "photo_full": "data/images/Ketan_full.jpg"
+    },
+    {
+        "friend": "Raghav",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpg"
+    },
+    {
+        "friend": "Rama",
+        "photo_cropped": "data/images/Rama_cropped.jpg",
+        "photo_full": "data/images/Rama_full.jpg"
+    },
+    {
+        "friend": "Rhea",
+        "photo_cropped": "data/images/Rhea_cropped.jpg",
+        "photo_full": "data/images/Rhea_full.jpg"
+    },
+    {
+        "friend": "Shubham",
+        "photo_cropped": "data/images/Shubham_cropped.jpg",
+        "photo_full": "data/images/Shubham_full.jpg"
+    },
+    {
+        "friend": "Sneha",
+        "photo_cropped": "data/images/Sneha_cropped.jpg",
+        "photo_full": "data/images/Sneha_full.jpg"
+    },
+    {
+        "friend": "Ali",
+        "photo_cropped": "data/images/Ali_cropped.jpg",
+        "photo_full": "data/images/Ali_full.jpg"
+    },
+    {
+        "friend": "Ali",
+        "photo_cropped": "data/images/Ali_cropped.jpg",
+        "photo_full": "data/images/Ali_full.jpg"
+    },
+    {
+        "friend": "Ali",
+        "photo_cropped": "data/images/Ali_cropped.jpg",
+        "photo_full": "data/images/Ali_full.jpg"
+    }
+];

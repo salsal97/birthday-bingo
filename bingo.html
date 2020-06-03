@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="" id="insert-style">
 
     <!-- include data -->
-    <script src="data/songs.txt"></script>
+    <script src="data/photos.txt"></script>
 
     <!-- Disable right click http://www.spacegun.co.uk -->
     <script language=JavaScript>
@@ -49,15 +49,18 @@
 
         // generate/restart game
         function generate() {
+            console.log("start");
             document.getElementById("player").innerHTML = "";
             var node = document.getElementById("grid");
             var usedPlayers = [];
+            var table_obj = "";
 
             if (node.innerHTML && !confirm("Are you sure you want to regenerate?"))
                 return;
 
             var html = '<table border="0">';
             for (var y = 0; y < N; y++) {
+                console.log("loop start");
                 html += "<tr>"
                 for (var x = 0; x < N; x++) {
                     var obj = data[x + y * N];
@@ -69,11 +72,24 @@
                     usedPlayers.push(player);
                     document.getElementById("player").innerHTML += '<li id="player_' + i + '">' + player + '</li>';
 
+                    // <td id="cell_0_0"><span id="chk-cell_0_0" onclick="cellClicked('cell_0_0')"><img src="data/images/Ali_cropped.jpg" alt="cropped photo here" /></span></td>
+
                     // index table obj start 
                     table_obj = '<td id="cell_' + x + '_' + y + '" >';
 
-                    // guess icon
-                    table_obj += '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + "')\"> <i class=\"fas fa-dice\"></i></span>";
+                    // adding guess function
+                    table_obj += '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + '\')">';
+
+                    // adding clickable dice icon
+                    if (type == "quote" || type == "song")
+                        table_obj += '<i class=\"fas fa-dice\"></i>';
+
+                    // adding clickable image
+                    if (type == "photo")
+                        table_obj += '<img src ="' + obj.photo_cropped + '" alt="cropped photo here" />';
+
+                    // close guess function
+                    table_obj += '</span>';
 
                     // add song name and artist
                     if (type == "song") {
@@ -88,10 +104,12 @@
                     // end table object
                     table_obj += "</td>";
 
+                    console.log(table_obj);
                     html += table_obj;
                 }
                 html += "</tr>"
             }
+            console.log(html);
             html += "</table>";
             node.innerHTML = html;
             save("bingo.grid", html);
@@ -117,9 +135,11 @@
 
             var person = prompt("Enter the name of the friend");
             if (person != null) {
+
+                // correct guess
                 if (person.toLowerCase() == data[i].friend.toLowerCase()) {
                     d.innerHTML = data[i].friend.toUpperCase();
-                    d.style.backgroundColor = "#006FC4";
+                    d.style.backgroundColor = correct_guess_color;
                     var player = document.getElementById("player_" + i);
                     player.innerHTML = "<s>" + player.innerHTML + "</s>";
                     correct_guesses++;
@@ -144,12 +164,13 @@
                         }
                     }
                 } else {
+                    // wrong guess
                     wrong_guesses[i]++;
                     if (wrong_guesses[i] >= wrong_guess_max) {
                         if (confirm("Cheat code activated. Would you like to know the answer?"))
                             alert("The correct answer is " + data[i].friend);
                     }
-                    d.style.backgroundColor = "#E69D29";
+                    d.style.backgroundColor = wrong_guess_color;
                     if (!d.innerHTML.endsWith(", ")) {
                         d.innerHTML += "<br> Wrong guess: ";
                     }
@@ -266,7 +287,33 @@
             <li>Good luck, maybe time yourself? May the force be with you</li>
         </ol>
     </div>
+    <!-- <td id="cell_' + x + '_' + y + '" >';
 
+        // // adding guess function
+        // table_obj += '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + "')\">";
+
+        // adding clickable dice icon
+        if (type == "quote" || type == "song")
+            table_obj += '<i class=\"fas fa-dice\"></i>';
+
+        // adding clickable image
+        // if (type == "photo")
+        // table_obj += '<img src="https://drive.google.com/file/d/' + obj.photo_cropped + '/preview" />';
+        // table_obj += '<img src ="' + obj.photo_cropped + '" alt="cropped photo here" />';
+
+        // // close guess function
+        // table_obj += '</span>'; -->
+
+    <!-- <table border="0">
+        <tr>
+            <td id="cell_0_0"><span id="chk-cell_0_0" onclick="cellClicked('cell_0_0')"><img src="data/images/Ali_cropped.jpg" alt="cropped photo here" /></span></td>
+            <td><img src="data/images/Ali_cropped.jpg" alt="cropped photo here" /></td>
+        </tr>
+        <tr>
+            <td><img src="data/images/Ali_cropped.jpg" alt="cropped photo here" /></td>
+            <td><img src="data/images/Ali_cropped.jpg" alt="cropped photo here" /></td>
+        </tr>
+    </table> -->
     <div id="embeddedPlayer">
         <iframe id="youtubePlayer" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>;
     </div>
