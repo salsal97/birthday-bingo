@@ -155,18 +155,18 @@ let data1 = [
         "photo_full": "data/images/Sneha_full.jpg"
     },
     {
-        "friend": "Ali",
-        "photo_cropped": "data/images/Ali_cropped.jpg",
-        "photo_full": "data/images/Ali_full.jpg"
+        "friend": "Saloni",
+        "photo_cropped": "data/images/Saloni_cropped.jpg",
+        "photo_full": "data/images/Saloni_full.jpg"
     },
     {
-        "friend": "Ali",
-        "photo_cropped": "data/images/Ali_cropped.jpg",
-        "photo_full": "data/images/Ali_full.jpg"
+        "friend": "Saif",
+        "photo_cropped": "data/images/Saif_cropped.jpg",
+        "photo_full": "data/images/Saif_full.jpg"
     },
     {
-        "friend": "Ali",
-        "photo_cropped": "data/images/Ali_cropped.jpg",
-        "photo_full": "data/images/Ali_full.jpg"
+        "friend": "Shivom",
+        "photo_cropped": "data/images/Shivom_cropped.jpg",
+        "photo_full": "data/images/Shivom_full.jpg"
     }
 ];
