@@ -109,13 +109,13 @@ let data1 = [
             "photo_full": "data/images/Shivom_full.jpg"
         },
         {
-            "friend": "Jai1",
-            "photo_cropped": "data/images/Jai_cropped.jpg",
-            "photo_full": "data/images/Jai_full.jpg"
+            "friend": "Sarode",
+            "photo_cropped": "data/images/Sarode_cropped.jpg",
+            "photo_full": "data/images/Sarode_full.jpg"
         },
         {
-            "friend": "Shivom1",
-            "photo_cropped": "data/images/Shivom_cropped.jpg",
-            "photo_full": "data/images/Shivom_full.jpg"
+            "friend": "Karle",
+            "photo_cropped": "data/images/Karle_cropped.jpg",
+            "photo_full": "data/images/Karle_full.jpg"
         }
     ];
