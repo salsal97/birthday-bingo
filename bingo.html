@@ -43,9 +43,10 @@
     <script type="text/javascript">
         document.getElementById("insert-style").href = style_file;
         var N = N1;
+        var M = M1;
         var data = data1;
         var wrong_guess_max = wrong_guess_max1;
-        var wrong_guesses = new Array(N * N).fill(0);
+        var wrong_guesses = new Array(N * M).fill(0);
         var correct_guesses = 0;
 
         // generate/restart game
@@ -60,14 +61,14 @@
                 return;
 
             var html = '<table border="0">';
-            for (var y = 0; y < N; y++) {
+            for (var y = 0; y < M; y++) {
                 console.log("loop start");
                 html += "<tr>"
                 for (var x = 0; x < N; x++) {
                     var obj = data[x + y * N];
 
                     do {
-                        var i = Math.round(Math.random() * (N * N - 1));
+                        var i = Math.round(Math.random() * (N * M - 1));
                         var player = data[i].friend;
                     } while (usedPlayers.indexOf(player) >= 0);
                     usedPlayers.push(player);
@@ -152,8 +153,8 @@
                 var modalImage = document.getElementById("modalImage");
                 popupModal.style.display = "block";
                 modalImage.src = data[i].photo_full;
-            } else
-                d.innerHTML = data[i].friend.toUpperCase();
+            }
+            d.innerHTML = data[i].friend.toUpperCase();
             d.style.backgroundColor = correct_guess_color;
 
             // Strike out player
@@ -161,7 +162,7 @@
             player.innerHTML = "<s>" + player.innerHTML + "</s>";
 
             // Check for BINGO
-            if (correct_guesses == N * N) {
+            if (correct_guesses == N * M) {
                 onBingo();
             }
         }
@@ -223,7 +224,7 @@
 
 
         function saveGameState() {
-            for (var y = 0; y < N; y++) {
+            for (var y = 0; y < M; y++) {
                 for (var x = 0; x < N; x++) {
                     var id = 'cell_' + x + '_' + y;
                     var c = document.getElementById("chk-" + id);
@@ -233,7 +234,7 @@
         }
 
         function loadGameState() {
-            for (var y = 0; y < N; y++) {
+            for (var y = 0; y < M; y++) {
                 for (var x = 0; x < N; x++) {
                     var id = 'cell_' + x + '_' + y;
                     var c = document.getElementById("chk-" + id);
@@ -285,7 +286,6 @@
             var modal = document.getElementById("popupModal");
             modal.style.display = "none";
         }
-
     </script>
 </head>
 
@@ -333,12 +333,10 @@
     </form>
 
     <div id="popupModal" class="modal">
-
         <span class="close" onclick="closeModal()">&times;</span>
-      
         <img class="modal-content" id="modalImage">
-      
-      </div>
+    </div>
+
     <div id="grid"></div>
     <div id="progress_bar"></div>
 </body>
