@@ -8,10 +8,13 @@
     <script src="data/songs.txt" id="data-file"></script>
 
     <link rel="stylesheet" type="text/css" href="" id="insert-style">
+    <link rel="stylesheet" type="text/css" href="data/index.css">
     <script type="text/javascript">
         document.getElementById("insert-style").href = style_file;
         console.log("Put style file");
     </script>
+
+    <script src="data/intro_collage.txt"></script>
 
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
@@ -36,6 +39,39 @@
     <div>
         <a href="bingo.html">PLAY BINGO!</a>
     </div>
+
+    <div style="text-align: center;">
+        <div id="collage_grid" style="display: block;">
+            
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var collage_grid = document.getElementById("collage_grid");
+
+        var files = images;
+        if(files) {
+            var column_count = 4;  // Math.ceil(Math.sqrt(files.length));
+            var row_count = Math.floor(files.length / column_count);
+
+            var image_count = 0;
+            var grid = "";
+            grid += "<div class=\"row\">";
+            for (var i = 0; i < column_count; i++) {
+                console.log("Row");
+                grid += "<div class=\"column\">";
+                for (var j = 0; j < row_count; j++) {
+                    console.log("Column");
+                    grid += "<img src=\"" + files[image_count].url + "\">";
+                    image_count += 1;
+                }
+                grid += "</div>";
+            }
+            grid += "</div>";
+            collage_grid.innerHTML = grid;
+        }
+    </script>
+
 </body>
 
 </html>
