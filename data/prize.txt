@@ -1,5 +1,5 @@
 let google_drive_media_hash = "";
 let youtube_video_hash = "";
-let google_image_link = "https://cdn.cp.adobe.io/content/2/rendition/561a2570-0e59-4000-a2f8-a6ae173d0d1e/artwork/0f87e01d-6edd-46f3-b864-6e9e77b408fb/version/0/format/jpg/dimension/width/size/300";
+let google_image_link = "broken-link";
 let hyperlink = "broken-link";
 let hyperlink_text = "Go look for your brother";
