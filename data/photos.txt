@@ -74,7 +74,7 @@ let data1 = [
             "photo_full": "data/images/Saloni_full.jpg"
         },
         {
-            "friend": "Sneha ",
+            "friend": "Sneha",
             "photo_cropped": "data/images/Sneha_cropped.jpg",
             "photo_full": "data/images/Sneha_full.jpg"
         },

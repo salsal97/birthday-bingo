@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="" id="insert-style">
     <link rel="stylesheet" type="text/css" href="data/bingo.css">
 
-    <!-- include data -->
+    <!-- Select type of bingo -->
     <script src="data/photos.txt"></script>
 
     <!-- Disable right click http://www.spacegun.co.uk -->
@@ -49,6 +49,8 @@
         var wrong_guesses = new Array(N * M).fill(0);
         var correct_guesses = 0;
 
+        // TODO: TEST: Check if num(data) = N*M
+
         // generate/restart game
         function generate() {
             console.log("start");
@@ -73,8 +75,6 @@
                     } while (usedPlayers.indexOf(player) >= 0);
                     usedPlayers.push(player);
                     document.getElementById("player").innerHTML += '<li id="player_' + i + '">' + player + '</li>';
-
-                    // <td id="cell_0_0"><span id="chk-cell_0_0" onclick="cellClicked('cell_0_0')"><img src="data/images/Ali_cropped.jpg" alt="cropped photo here" /></span></td>
 
                     // index table obj start 
                     table_obj = '<td id="cell_' + x + '_' + y + '" >';
@@ -130,11 +130,11 @@
             var temp = id.split("_");
             var i = Number(temp[1]) + Number(temp[2]) * N;
 
-            var person = prompt("Enter the name of the friend");
+            var person = prompt("Enter the name of the friend").trim();
             if (person != null) {
 
                 // correct guess
-                if (person.toLowerCase() == data[i].friend.toLowerCase()) {
+                if (person.toLowerCase() == data[i].friend.toLowerCase().trim()) {
                     correctGuess(id, i);
                 } else {
                     wrongGuess(id, i, person);
@@ -188,6 +188,8 @@
         }
 
         function onBingo() {
+
+            // Clear page & start loading taskbar
             document.getElementById("player_list").innerHTML = "";
             document.getElementById("grid").innerHTML = '<h1 style="background:#0A7328"> Congratulations! Your prize is loading ...</h1>';
             var elem = document.getElementById("progress_bar");
@@ -198,6 +200,8 @@
 
             function frame() {
                 if (width >= 100) {
+
+                    // On loaded, move to prize page
                     clearInterval(id);
                     window.location.replace("prize.html");
                 } else {
@@ -207,7 +211,7 @@
             }
         }
 
-        //open YouTube embedded
+        // open YouTube embedded
         function openPlayer(id) {
             console.log("ID in openPlayer -> " + id);
             var temp = id.split("_");
@@ -261,6 +265,7 @@
         function start() {
             document.getElementById("heading").innerHTML = bingo_heading;
             document.getElementById("specific-instructions").innerHTML = specific_instructions1;
+
             if (supports_html5_storage()) {
                 save = function(key, value) {
                     localStorage.setItem(key, value);

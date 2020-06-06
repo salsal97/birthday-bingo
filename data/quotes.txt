@@ -1,7 +1,8 @@
 let type = "quote";
 let style_file = "data/quotes.css";
 let bingo_heading = "Quote Bingo";
-let N1 = 4; //Number of rows and columns
+let N1 = 4; // Number of columns
+let M1 = 4; // Number of rows
 let wrong_guess_max1 = 3;
 let wrong_guess_color = "#E69D29";
 let correct_guess_color = "#006FC4";
