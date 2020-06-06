@@ -10,13 +10,13 @@ let specific_instructions1 = "In the boxes you see your face. Well actually its 
 let data1 = [
         {
             "friend": "Isha",
-            "photo_cropped": "data/images/Isha_cropped.jpg",
-            "photo_full": "data/images/Isha_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Rhea",
-            "photo_cropped": "data/images/Rhea_cropped.jpg",
-            "photo_full": "data/images/Rhea_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Ali",
@@ -25,97 +25,97 @@ let data1 = [
         },
         {
             "friend": "Anmol",
-            "photo_cropped": "data/images/Anmol_cropped.jpg",
-            "photo_full": "data/images/Anmol_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Deepti",
-            "photo_cropped": "data/images/Deepti_cropped.jpg",
-            "photo_full": "data/images/Deepti_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "DJ",
-            "photo_cropped": "data/images/DJ_cropped.jpg",
-            "photo_full": "data/images/DJ_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Gattu",
-            "photo_cropped": "data/images/Gattu_cropped.jpg",
-            "photo_full": "data/images/Gattu_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Karle",
-            "photo_cropped": "data/images/Karle_cropped.jpg",
-            "photo_full": "data/images/Karle_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Sarode",
-            "photo_cropped": "data/images/Sarode_cropped.jpg",
-            "photo_full": "data/images/Sarode_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Ketan",
-            "photo_cropped": "data/images/Ketan_cropped.jpg",
-            "photo_full": "data/images/Ketan_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Saif",
-            "photo_cropped": "data/images/Saif_cropped.jpg",
-            "photo_full": "data/images/Saif_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Shubham",
-            "photo_cropped": "data/images/Shubham_cropped.jpg",
-            "photo_full": "data/images/Shubham_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Faiz",
-            "photo_cropped": "data/images/Faiz_cropped.jpg",
-            "photo_full": "data/images/Faiz_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Raghav",
-            "photo_cropped": "data/images/Raghav_cropped.jpg",
-            "photo_full": "data/images/Raghav_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Saloni",
-            "photo_cropped": "data/images/Saloni_cropped.jpg",
-            "photo_full": "data/images/Saloni_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Sneha",
-            "photo_cropped": "data/images/Sneha_cropped.jpg",
-            "photo_full": "data/images/Sneha_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Rama",
-            "photo_cropped": "data/images/Rama_cropped.jpg",
-            "photo_full": "data/images/Rama_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Shantan",
-            "photo_cropped": "data/images/Shantan_cropped.jpg",
-            "photo_full": "data/images/Shantan_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Jai",
-            "photo_cropped": "data/images/Jai_cropped.jpg",
-            "photo_full": "data/images/Jai_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Shivom",
-            "photo_cropped": "data/images/Shivom_cropped.jpg",
-            "photo_full": "data/images/Shivom_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Sarode",
-            "photo_cropped": "data/images/Sarode_cropped.jpg",
-            "photo_full": "data/images/Sarode_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         },
         {
             "friend": "Karle",
-            "photo_cropped": "data/images/Karle_cropped.jpg",
-            "photo_full": "data/images/Karle_full.jpg"
+            "photo_cropped": "data/images/Ali_cropped.jpg",
+            "photo_full": "data/images/Ali_full.jpg"
         }
     ];
