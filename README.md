@@ -18,13 +18,19 @@ Steps to really select it:
 
 3. Save all three files!
 
+## Front page setup
+
+If you would like to add pictures on the front page: <br/>
+1. Add their location to [this](data/front_page.txt) file <br/>
+2. Add the pictures in [this](data/front_page) location
+
 ## Song Bingo
 Friends will choose songs for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the song for them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!<br/>
 eg: birthday-bingo.azurewebsites.net
 
 ### Steps to configure:
 
-1. Make sure you have selected the right bingo by following [this](#Select-your-bingo)
+1. Make sure you have selected the right bingo by following [this](#Select-your-bingo) & you have added your front page pictures by following [this](#Front-page-setup)
 
 2. Collect a json array of data from friends and family with the following recommended fields: 
 
@@ -58,7 +64,7 @@ eg: quote-bingo.azurewebsites.net
 
 ### Steps to configure:
 
-1. Make sure you have selected the right bingo by following [this](#Select-your-bingo)
+1. Make sure you have selected the right bingo by following [this](#Select-your-bingo) & you have added your front page pictures by following [this](#Front-page-setup)
 
 2. Collect a json array of data from friends and family with the following recommended fields: 
 
@@ -89,7 +95,7 @@ eg: photo-bingo.azurewebsites.net
 
 ### Steps to configure:
 
-1. Make sure you have selected the right bingo by following [this](#Select-your-bingo)
+1. Make sure you have selected the right bingo by following [this](#Select-your-bingo) & you have added your front page pictures by following [this](#Front-page-setup)
 
 2. Collect a json array of data from friends and family with the following recommended fields: 
 
