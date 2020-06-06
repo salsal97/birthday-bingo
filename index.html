@@ -5,17 +5,32 @@
 <head>
     <title>Birthday Bingo</title>
 
-    <script src="data/songs.txt" id="data-file"></script>
+    <<<<<<< HEAD <script src="data/songs.txt" id="data-file">
+        </script>
 
-    <link rel="stylesheet" type="text/css" href="" id="insert-style">
-    <script type="text/javascript">
-        document.getElementById("insert-style").href = style_file;
-        console.log("Put style file");
-    </script>
+        <link rel="stylesheet" type="text/css" href="" id="insert-style">
+        <script type="text/javascript">
+            document.getElementById("insert-style").href = style_file;
+            console.log("Put style file");
+        </script>
 
-    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
-    <link rel="icon" href="https://img.icons8.com/flat_round/64/000000/whale--v1.png">
+        =======
+        <!-- Select type of bingo -->
+        <script src="data/photos.txt" id="data-file"></script>
+        <link rel="stylesheet" type="text/css" href="" id="insert-style">
+        <script type="text/javascript">
+            document.getElementById("insert-style").href = style_file;
+        </script>
+
+        <!-- Front page images -->
+        <script src="data/front_page.txt"></script>
+        <link rel="stylesheet" type="text/css" href="data/index.css">
+
+        <!-- Font & Website logo -->
+        >>>>>>> photo-bingo
+        <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
+        <link rel="icon" href="https://img.icons8.com/flat_round/64/000000/whale--v1.png">
 </head>
 
 <body>
@@ -36,6 +51,42 @@
     <div>
         <a href="bingo.html">PLAY BINGO!</a>
     </div>
+
+    <div style="text-align: center;">
+        <div id="collage_grid" style="display: block;"></div>
+    </div>
+
+    <script type="text/javascript">
+        var collage_grid = document.getElementById("collage_grid");
+
+        var files = images;
+        if (files) {
+            var column_count = no_of_columns; // from file
+            var row_count = files.length;
+            console.log("Number of pictures in each column = " + row_count)
+
+            var image_count = 0;
+            var grid = "";
+            grid += "<div class=\"row\">";
+            for (var i = 0; i < column_count; i++) {
+
+                var used_images = new Array(row_count).fill(0);
+                grid += "<div class=\"column\">";
+
+                for (var j = 0; j < row_count; j++) {
+                    do {
+                        var random_num = Math.round(Math.random() * (row_count - 1));
+                    } while (used_images[random_num] == 1);
+
+                    grid += "<img src=\"" + files[random_num].url + "\" height=\"\">";
+                    used_images[random_num] = 1;
+                }
+                grid += "</div>";
+            }
+            grid += "</div>";
+            collage_grid.innerHTML = grid;
+        }
+    </script>
 </body>
 
 </html>

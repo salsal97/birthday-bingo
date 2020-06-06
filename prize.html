@@ -9,8 +9,8 @@
 <head>
     <title>Happy Birthday!</title>
 
-    <!-- include data -->
-    <script src="data/songs.txt"></script>
+    <!-- Select type of bingo -->
+    <script src="data/photos.txt" id="data-file"></script>
     <link rel="stylesheet" type="text/css" href="" id="insert-style">
     <script type="text/javascript">
         document.getElementById("insert-style").href = style_file;
@@ -42,6 +42,10 @@
 
     <br><br>
 
+    <iframe id="google-image" src="" height="100%" frameBorder="0" style="display: none; margin:auto;"></iframe>
+
+    <br><br>
+
     <h2>
         <a href="" id="link" style="display: none;"></a>
     </h2>
@@ -61,6 +65,11 @@
         if (youtube_video_hash) {
             document.getElementById("youtube").style.display = "block";
             document.getElementById("youtube").src = "https://www.youtube.com/embed/" + youtube_video_hash;
+        }
+
+        if (google_image_link) {
+            document.getElementById("google-image").style.display = "block";
+            document.getElementById("google-image").src = google_image_link;
         }
     </script>
 </body>

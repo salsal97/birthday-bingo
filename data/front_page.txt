@@ -1,0 +1,36 @@
+let no_of_columns = 4;
+let images = [
+    {
+        "url": "data/front_page/Mikel Arteta.jpg"
+    },
+    {
+        "url": "data/front_page/arsenal_logo.jpeg"
+    },
+    {
+        "url": "data/front_page/arsenal_stadium.jpeg"
+    },
+    {
+        "url": "data/front_page/arsene_wnger_goh.jpg"
+    },
+    {
+        "url": "data/front_page/invisnsibles_team.jpeg"
+    },
+    {
+        "url": "data/front_page/arteta_appointment.jpeg"
+    },
+    {
+        "url": "data/front_page/ozil.jpeg"
+    },
+    {
+        "url": "data/front_page/arsenal_aub.jpeg"
+    },
+    {
+        "url": "data/front_page/arsenal_1.jpeg"
+    },
+    {
+        "url": "data/front_page/arsenal_2.jpeg"
+    },
+    {
+        "url": "data/front_page/arsenal_3.jpeg"
+    }
+];

@@ -1,8 +1,11 @@
 let type = "song";
 let style_file = "data/songs.css";
 let bingo_heading = "Song Bingo";
-let N1 = 4; //Number of rows and columns
+let N1 = 4; // Number of columns
+let M1 = 4; // Number of rows
 let wrong_guess_max1 = 3; 
+let wrong_guess_color = "#E69D29";
+let correct_guess_color = "#114C80";
 let specific_instructions1 = "In the boxes you see the name of a song, its artist, and a quote from the song that someone chose for you </li><li>Click on the <i class=\"fab fa-youtube\"></i> in the box to play the song </li><li><strong>Click on the <i class=\"fas fa-dice\"></i> in the box to guess who chose this song </strong>"
 let data1 = [
         {
