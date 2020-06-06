@@ -34,14 +34,24 @@ let data1 = [
             "photo_full": "data/images/Deepti_full.jpg"
         },
         {
-            "friend": "Disha",
-            "photo_cropped": "data/images/Disha_cropped.jpg",
-            "photo_full": "data/images/Disha_full.jpg"
-        },
-        {
             "friend": "DJ",
             "photo_cropped": "data/images/DJ_cropped.jpg",
             "photo_full": "data/images/DJ_full.jpg"
+        },
+        {
+            "friend": "Gattu",
+            "photo_cropped": "data/images/Gattu_cropped.jpg",
+            "photo_full": "data/images/Gattu_full.jpg"
+        },
+        {
+            "friend": "Karle",
+            "photo_cropped": "data/images/Karle_cropped.jpg",
+            "photo_full": "data/images/Karle_full.jpg"
+        },
+        {
+            "friend": "Sarode",
+            "photo_cropped": "data/images/Sarode_cropped.jpg",
+            "photo_full": "data/images/Sarode_full.jpg"
         },
         {
             "friend": "Ketan",
