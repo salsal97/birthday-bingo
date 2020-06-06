@@ -72,8 +72,4 @@ let data1 = [
         "friend": "Trisha",
         "quote": "\"For being this warm friendly face that's so easy to open up to\""
     }
-<<<<<<< HEAD
-]
-=======
 ];
->>>>>>> photo-bingo
