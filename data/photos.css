@@ -1,0 +1,135 @@
+body {
+    color: white;
+    background: black;
+    text-align: center;
+    font-family: DM Mono;
+    margin-left: 20px;
+    margin-right: 20px
+}
+
+p {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+a {
+    color: #2E9CFF
+}
+
+h1 {
+    background: #B00000;
+    text-align: center;
+    font-family: Playfair Display;
+    padding: 10px;
+    border: 1px solid #650000;
+}
+
+h2 {
+    background: #B00000;
+    font-family: Playfair Display;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #650000;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto
+}
+
+td {
+    background: #1769B3;
+    padding: 10px 20px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.error {
+    background-color: #FF7F7F;
+    color: red;
+    padding: 5px;
+    margin: 20px 50px;
+    border: 1px solid red;
+}
+
+td label {
+    cursor: pointer;
+    text-align: center;
+}
+
+form {
+    margin: 5px;
+    padding: 5px;
+    color: green;
+}
+
+#instructions {
+    display: none;
+    border: 1px solid #650000;
+    margin: 10px;
+    padding: 20px;
+    text-align: left;
+}
+
+#embeddedPlayer {
+    display: none;
+}
+
+ul,
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.modal-content {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
