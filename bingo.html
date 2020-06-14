@@ -55,6 +55,8 @@
             console.log("start");
             document.getElementById("player").innerHTML = "";
             var node = document.getElementById("grid");
+            wrong_guesses = new Array(N * M).fill(0);
+            correct_guesses = 0;
             var usedPlayers = [];
             var table_obj = "";
 
