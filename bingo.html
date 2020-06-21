@@ -15,7 +15,7 @@
     <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
 
     <!-- css -->
-    <link rel="stylesheet" type="text/css" href="" id="insert-style">
+    <link rel="stylesheet" type="text/css" href="" id="insertStyle">
 
     <!-- Select type of bingo -->
     <script src="data/bingo.txt"></script>
@@ -40,7 +40,6 @@
     <title>Birthday Bingo</title>
 
     <script type="text/javascript">
-        document.getElementById("insert-style").href = style_file;
         var N = N1;
         var M = M1;
         var data = data1;
@@ -48,11 +47,16 @@
         var wrong_guesses = new Array(N * M).fill(0);
         var correct_guesses = 0;
 
+        function start() {
+            document.getElementById("heading").innerHTML = bingo_heading;
+            document.getElementById("specificInstructions").innerHTML = specific_instructions1;
+            document.getElementById("insertStyle").href = style_file;
+        }
+
         // generate/restart game
         function generate() {
-            console.log("start");
             document.getElementById("player").innerHTML = "";
-            var node = document.getElementById("grid");
+            var grid = document.getElementById("grid");
             wrong_guesses = new Array(N * M).fill(0);
             correct_guesses = 0;
             var used_id = [];
@@ -60,18 +64,18 @@
 
             // TEST: Check if num(data) = N*M
             if (data.length != N * M) {
-                var html = "<h3>JSON ARRAY LENGTH = " + data.length + " DOES NOT MATCH N*M = " + (N * M) + "</h3>";
-                node.innerHTML = html;
-                console.log("JSON ARRAY LENGTH DOES NOT MATCH N*M")
+                var error = "<h3>JSON ARRAY LENGTH = " + data.length + " DOES NOT MATCH N*M = " + (N * M) + "</h3>";
+                grid.innerHTML = error;
+                console.log(error)
                 return;
             }
 
-            if (node.innerHTML && !confirm("Are you sure you want to regenerate?"))
+            if (grid.innerHTML && !confirm("Are you sure you want to regenerate?"))
                 return;
 
+            console.log("grid start");
             var html = '<table border="0">';
             for (var y = 0; y < M; y++) {
-                console.log("loop start");
                 html += "<tr>"
                 for (var x = 0; x < N; x++) {
                     var obj = data[x + y * N];
@@ -118,20 +122,8 @@
                 html += "</tr>"
             }
             html += "</table>";
-            node.innerHTML = html;
-            save("bingo.grid", html);
-            saveGameState();
+            grid.innerHTML = html;
         }
-
-        /* http://diveintohtml5.info/storage.html */
-        function supports_html5_storage() {
-            try {
-                return 'localStorage' in window && window['localStorage'] !== null;
-            } catch (e) {
-                return false;
-            }
-        }
-
 
         function cellClicked(id) {
             var temp = id.split("_");
@@ -139,15 +131,12 @@
 
             var person = prompt("Enter the name of the friend").trim();
             if (person != null) {
-
-                // correct guess
                 if (person.toLowerCase() == data[i].friend.toLowerCase().trim()) {
                     correctGuess(id, i);
                 } else {
                     wrongGuess(id, i, person);
                 }
             }
-            saveGameState();
         }
 
         function correctGuess(id, i) {
@@ -197,9 +186,9 @@
         function onBingo() {
 
             // Clear page & start loading taskbar
-            document.getElementById("player_list").innerHTML = "";
+            document.getElementById("playerList").innerHTML = "";
             document.getElementById("grid").innerHTML = '<h1 style="background:#0A7328"> Congratulations! Your prize is loading ...</h1>';
-            var elem = document.getElementById("progress_bar");
+            var elem = document.getElementById("progressBar");
             elem.innerHTML = '<h1 style="background:white"> </h1>';
 
             var width = 1;
@@ -236,64 +225,12 @@
                 elem.style.display = "block";
         }
 
-
-        function saveGameState() {
-            for (var y = 0; y < M; y++) {
-                for (var x = 0; x < N; x++) {
-                    var id = 'cell_' + x + '_' + y;
-                    var c = document.getElementById("chk-" + id);
-                    save("bingo." + id, c.checked);
-                }
-            }
-        }
-
-        function loadGameState() {
-            for (var y = 0; y < M; y++) {
-                for (var x = 0; x < N; x++) {
-                    var id = 'cell_' + x + '_' + y;
-                    var c = document.getElementById("chk-" + id);
-                    c.checked = (load("bingo." + id) == 'true');
-                    var d = document.getElementById(id);
-                    d.className = (c.checked) ? "highlight" : "";
-                }
-            }
-        }
-
         function toggle(id) {
             var elem = document.getElementById(id);
             if (elem.style.display == "block")
                 elem.style.display = "none";
             else
                 elem.style.display = "block";
-        }
-
-        save = function(key, value) {};
-        load = function(key) {
-            return null
-        };
-
-        function start() {
-            document.getElementById("heading").innerHTML = bingo_heading;
-            document.getElementById("specific-instructions").innerHTML = specific_instructions1;
-            if (supports_html5_storage()) {
-                save = function(key, value) {
-                    localStorage.setItem(key, value);
-                };
-                load = function(key) {
-                    return localStorage.getItem(key);
-                };
-            } else {
-                alert("Your browser does not support localStorage.\nYou won't be able to persist the Bingo grid.\nUpgrading your browser may help.");
-                return;
-            }
-
-            var grid = load("bingo.grid");
-            if (grid) {
-                console.log("Loaded a previously generated grid");
-                var node = document.getElementById("grid");
-                node.innerHTML = grid;
-                loadGameState();
-            }
         }
 
         function closeModal() {
@@ -325,7 +262,7 @@
                 <li>Enable JavaScript</li>
             </noscript>
             <li>Click <strong>Refresh</strong> to create your Bingo board.</li>
-            <li id="specific-instructions"></li>
+            <li id="specificInstructions"></li>
             <li>If your guess is right, the box will change color and display the name of the person (: </li>
             <li>If your guess is wrong, the box will show you your incorrect guess to help you narrow your search </li>
             <li>HINT: The roster on the left of the grid has names of the people who participated! Hit refresh if it hasn't been populated yet </li>
@@ -337,7 +274,7 @@
         <iframe id="youtubePlayer" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>;
     </div>
 
-    <div style="float:left" id="player_list">
+    <div style="float:left" id="playerList">
         <h2 style="margin-bottom:0">Roster</h2>
         <ul id="player"></ul>
     </div>
@@ -352,7 +289,7 @@
     </div>
 
     <div id="grid"></div>
-    <div id="progress_bar"></div>
+    <div id="progressBar"></div>
 </body>
 
 </html>

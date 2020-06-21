@@ -23,7 +23,7 @@ let data1 = [
     {
         "id": 3,
         "type": "quote",
-        "friend": "shantan",
+        "friend": "Shantan",
         "quote": "\"phone toh utha liya karo\""
     },
     {
