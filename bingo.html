@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="" id="insert-style">
 
     <!-- Select type of bingo -->
-    <script src="data/photos.txt"></script>
+    <script src="data/bingo.txt"></script>
 
     <!-- Disable right click http://www.spacegun.co.uk -->
     <script language=JavaScript>
@@ -48,8 +48,6 @@
         var wrong_guesses = new Array(N * M).fill(0);
         var correct_guesses = 0;
 
-        // TODO: TEST: Check if num(data) = N*M
-
         // generate/restart game
         function generate() {
             console.log("start");
@@ -57,8 +55,16 @@
             var node = document.getElementById("grid");
             wrong_guesses = new Array(N * M).fill(0);
             correct_guesses = 0;
-            var usedPlayers = [];
+            var used_id = [];
             var table_obj = "";
+
+            // TEST: Check if num(data) = N*M
+            if (data.length != N * M) {
+                var html = "<h3>JSON ARRAY LENGTH = " + data.length + " DOES NOT MATCH N*M = " + (N * M) + "</h3>";
+                node.innerHTML = html;
+                console.log("JSON ARRAY LENGTH DOES NOT MATCH N*M")
+                return;
+            }
 
             if (node.innerHTML && !confirm("Are you sure you want to regenerate?"))
                 return;
@@ -70,12 +76,12 @@
                 for (var x = 0; x < N; x++) {
                     var obj = data[x + y * N];
 
+                    var i;
                     do {
-                        var i = Math.round(Math.random() * (N * M - 1));
-                        var player = data[i].friend;
-                    } while (usedPlayers.indexOf(player) >= 0);
-                    usedPlayers.push(player);
-                    document.getElementById("player").innerHTML += '<li id="player_' + i + '">' + player + '</li>';
+                        i = Math.round(Math.random() * (N * M - 1));
+                    } while (used_id.indexOf(i) >= 0);
+                    used_id.push(i);
+                    document.getElementById("player").innerHTML += '<li id="player_' + i + '">' + data[i].friend + '</li>';
 
                     // index table obj start 
                     table_obj = '<td id="cell_' + x + '_' + y + '" >';
@@ -84,24 +90,24 @@
                     table_obj += '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + '\')">';
 
                     // adding clickable dice icon
-                    if (type == "quote" || type == "song")
+                    if (obj.type == "quote" || obj.type == "song")
                         table_obj += '<i class=\"fas fa-dice\"></i>';
 
                     // adding clickable image
-                    if (type == "photo")
+                    if (obj.type == "photo")
                         table_obj += '<img src ="' + obj.photo_cropped + '" alt="cropped photo here" />';
 
                     // close guess function
                     table_obj += '</span>';
 
                     // add song name and artist
-                    if (type == "song") {
+                    if (obj.type == "song") {
                         table_obj += "\t" + obj.song + " - " + obj.artist;
                         table_obj += "<br>" + '<span onClick="openPlayer(\'cell_' + x + '_' + y + "')\"><i class=\"fab fa-youtube\"></i></span>";
                     }
 
                     // quote
-                    if (type == "quote" || type == "song")
+                    if (obj.type == "quote" || obj.type == "song")
                         table_obj += "\t" + obj.quote;
 
                     // end table object
@@ -149,7 +155,7 @@
             var d = document.getElementById(id);
 
             // Change content in box 
-            if (type == "photo") {
+            if (data[i].type == "photo") {
                 var popupModal = document.getElementById("popupModal");
                 var modalImage = document.getElementById("modalImage");
                 popupModal.style.display = "block";
@@ -204,7 +210,10 @@
 
                     // On loaded, move to prize page
                     clearInterval(id);
-                    window.location.replace("prize.html");
+                    if (prize_link)
+                        window.location.replace(prize_link);
+                    else
+                        window.location.replace("prize.html");
                 } else {
                     width++;
                     elem.style.width = width + '%';

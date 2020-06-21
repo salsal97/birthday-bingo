@@ -1,0 +1,139 @@
+let style_file = "data/photos.css";
+let bingo_heading = "Combo Bingo";
+let N1 = 4; // Number of columns
+let M1 = 5; // Number of rows
+let wrong_guess_max1 = 3;
+let wrong_guess_color = "#E69D29";
+let correct_guess_color = "#114C80";
+let prize_link = "https://ereg.ets.org/ereg/public/signin?bmctx=B880D2D189D031F58DE255EC162DBCCE83D65D48BDEC09F734722D40B8CFA0BECA8ADB067F660AF491DBD31D4D17FB6A&contextType=external&username=string&lockpage=https%3A%2F%2Fereg.ets.org%2Fereg%2Fpublic%2Faccountlock&contextValue=%2Foam&expiredpwdpage=https%3A%2F%2Feias.ets.org%2FxlWebApp%2Fexpiredpwd.jsp%3Fappid%3DEREG&password=sercure_string&challenge_url=https%3A%2F%2Fereg.ets.org%2Fereg%2Fpublic%2Fsignin&ssoCookie=secure&creds=username+password&request_id=-4956124658911458987&authn_try_count=0&locale=en_US&resource_url=https%253A%252F%252Fereg.ets.org%252Fereg%252Fhome%253F_p%253DGRI";
+let specific_instructions1 = "In the boxes you see your face. Well actually its a part of a picture, taken with you and someone else</li><li><strong>Click on the image itself to guess the name of the person who was in this picture with you<li>In the boxes you see a quote that one of your friends chose for you</li><li><strong>Click on the <i class=\"fas fa-dice\"></i> in the box to guess the name of the person who wrote the quote</strong>"
+let data1 = [
+    {
+        "id": 1,
+        "type": "quote",
+        "friend": "Nair",
+        "quote": "\"Please tell him to buy an iPhone!\""
+    },
+    {
+        "id": 2,
+        "type": "quote",
+        "friend": "Saloni",
+        "quote": "\"No way I can come to Goa dude, my tooth!!\""
+    },
+    {
+        "id": 3,
+        "type": "quote",
+        "friend": "shantan",
+        "quote": "\"phone toh utha liya karo\""
+    },
+    {
+        "id": 4,
+        "type": "quote",
+        "friend": "Dishu",
+        "quote": "\"Babe You are constant <3\""
+    },
+    {
+        "id": 5,
+        "type": "quote",
+        "friend": "Gattu",
+        "quote": "\"Do you have any softcopies of gre material available with you?..Like tests papers and all (for the 5th time)\""
+    },
+    {
+        "id": 6,
+        "type": "quote",
+        "friend": "Ketan",
+        "quote": "\"The dogs are still waiting!! \""
+    },
+    {
+        "id": 7,
+        "type": "quote",
+        "friend": "Pratyusha",
+        "quote": "\"Tu chudail hai, chudail saali\""
+    },
+    {
+        "id": 8,
+        "type": "quote",
+        "friend": "Priya",
+        "quote": "\"Bro GRE dete hai, gore ladke pataenge\""
+    },
+    {
+        "id": 9,
+        "type": "quote",
+        "friend": "Pranati",
+        "quote": "\"Give me one of your handkerchieves, I need it for the trip\""
+    },
+    {
+        "id": 10,
+        "type": "quote",
+        "friend": "Anushka",
+        "quote": "\"I taught you to swim seedha not tedha\""
+    },
+    {
+        "id": 11,
+        "type": "quote",
+        "friend": "Saif",
+        "quote": "\"Met you at a trek with a hat on, to playing basketball shouting saturday boi, i think you are the brand ambassador of the term \"I dont care what people say\". Stay this way.\""
+    },
+    {
+        "id": 12,
+        "type": "quote",
+        "friend": "Saumeya",
+        "quote": "\"You disappoint and make me proud in equal measures\""
+    },
+    {
+        "id": 12,
+        "type": "photo",
+        "friend": "Ali",
+        "photo_cropped": "data/images/Ali_cropped.jpg",
+        "photo_full": "data/images/Ali_full.jpeg"
+    },
+    {
+        "id": 13,
+        "type": "photo",
+        "friend": "Saloni",
+        "photo_cropped": "data/images/Saloni_cropped.jpg",
+        "photo_full": "data/images/Saloni_full.jpeg"
+    },
+    {
+        "id": 14,
+        "type": "photo",
+        "friend": "Deepti",
+        "photo_cropped": "data/images/Deepti_cropped.jpg",
+        "photo_full": "data/images/Deepti_full.jpeg"
+    },
+    {
+        "id": 15,
+        "type": "photo",
+        "friend": "Disha",
+        "photo_cropped": "data/images/Disha_cropped.jpg",
+        "photo_full": "data/images/Disha_full.jpeg"
+    },
+    {
+        "id": 16,
+        "type": "photo",
+        "friend": "Jha",
+        "photo_cropped": "data/images/Jha_cropped.jpg",
+        "photo_full": "data/images/Jha_full.jpeg"
+    },
+    {
+        "id": 17,
+        "type": "photo",
+        "friend": "Nair",
+        "photo_cropped": "data/images/Nair_cropped.jpg",
+        "photo_full": "data/images/Nair_full.jpeg"
+    },
+    {
+        "id": 18,
+        "type": "photo",
+        "friend": "Prajakti",
+        "photo_cropped": "data/images/Prajakti_cropped.jpg",
+        "photo_full": "data/images/Prajakti_full.jpeg"
+    },
+    {
+        "id": 21,
+        "type": "photo",
+        "friend": "Shantan",
+        "photo_cropped": "data/images/Shantan_cropped.jpg",
+        "photo_full": "data/images/Shantan_full.jpeg"
+    }
+]
