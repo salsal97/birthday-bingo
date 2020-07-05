@@ -1,0 +1,175 @@
+let style_file = "data/photos.css";
+let bingo_heading = "Combo Bingo";
+let N1 = 5; // Number of columns
+let M1 = 5; // Number of rows
+let wrong_guess_max1 = 3;
+let wrong_guess_color = "#E69D29";
+let correct_guess_color = "#114C80";
+let prize_link = "prize.html";
+let specific_instructions1 = "In the boxes you see your face. Well actually its a part of a picture, taken with you and someone else</li><li><strong>Click on the image itself to guess the name of the person who was in this picture with you<li>In the boxes you see a quote that one of your friends chose for you</li><li><strong>Click on the <i class=\"fas fa-dice\"></i> in the box to guess the name of the person who wrote the quote</strong>"
+let data1 = [
+     {
+        "id": 1,
+        "type": "quote",
+        "friend": "Nair",
+        "quote": "\"Please tell him to buy an iPhone!\""
+    },
+    {
+        "id": 2,
+        "type": "quote",
+        "friend": "Saloni",
+        "quote": "\"No way I can come to Goa dude, my tooth!!\""
+    },
+    {
+        "id": 3,
+        "type": "quote",
+        "friend": "Shantan",
+        "quote": "\"phone toh utha liya karo\""
+    },
+    {
+        "id": 4,
+        "type": "quote",
+        "friend": "Disha",
+        "quote": "\"Babe You are constant <3\""
+    },
+    {
+        "id": 5,
+        "type": "quote",
+        "friend": "Gattu",
+        "quote": "\"Do you have any softcopies of gre material available with you?..Like tests papers and all (for the 5th time)\""
+    },
+    {
+        "id": 6,
+        "type": "quote",
+        "friend": "Ketan",
+        "quote": "\"The dogs are still waiting!! \""
+    },
+    {
+        "id": 7,
+        "type": "quote",
+        "friend": "Pratyusha",
+        "quote": "\"Tu chudail hai, chudail saali\""
+    },
+    {
+        "id": 8,
+        "type": "quote",
+        "friend": "Priya",
+        "quote": "\"Bro GRE dete hai, gore ladke pataenge\""
+    },
+    {
+        "id": 9,
+        "type": "quote",
+        "friend": "Pranati",
+        "quote": "\"Give me one of your handkerchieves, I need it for the trip\""
+    },
+    {
+        "id": 10,
+        "type": "quote",
+        "friend": "Anushka",
+        "quote": "\"I taught you to swim seedha not tedha\""
+    },
+    {
+        "id": 11,
+        "type": "quote",
+        "friend": "Saif",
+        "quote": "\"Met you at a trek with a hat on, to playing basketball shouting saturday boi, i think you are the brand ambassador of the term \"I dont care what people say\". Stay this way.\""
+    },
+    {
+        "id": 12,
+        "type": "quote",
+        "friend": "Saumeya",
+        "quote": "\"You disappoint and make me proud in equal measures\""
+    },
+    {
+        "id": 13,
+        "type": "quote",
+        "friend": "Karle",
+        "quote": "\"Creepy AF\""
+    },
+    {
+        "id": 14,
+        "type": "song",
+        "friend": "Tanvi",
+        "song": "Jamaica Farewell",
+        "artist": "Harry Belafonte",
+        "quote": "But I'm sad to say I'm on my way, <br> Won't be back for many a day, <br> My heart is down, my head is turning around <br> I had to leave a little girl in Kingston town",
+        "link": "Ch4ckcyjzKE"
+    },
+    {
+        "id": 15,
+        "type": "photo",
+        "friend": "Sharvi",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpeg"
+    },
+    {
+        "id": 16,
+        "type": "photo",
+        "friend": "Deepti",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpeg"
+    },
+    {
+        "id": 17,
+        "type": "photo",
+        "friend": "Disha",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpeg"
+    },
+    {
+        "id": 18,
+        "type": "photo",
+        "friend": "Jha",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpeg"
+    },
+    {
+        "id": 19,
+        "type": "photo",
+        "friend": "Nair",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpeg"
+    },
+    {
+        "id": 20,
+        "type": "photo",
+        "friend": "Prajakti",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpeg"
+    },
+    {
+        "id": 21,
+        "type": "photo",
+        "friend": "Raghav",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpeg"
+    },
+    {
+        "id": 22,
+        "type": "photo",
+        "friend": "Rucha",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpeg"
+    },
+    {
+        "id": 23,
+        "type": "photo",
+        "friend": "Shantan",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpeg"
+    },
+    {
+        "id": 24,
+        "type": "photo",
+        "friend": "Jai",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpeg"
+    },
+    {
+        "id": 25,
+        "type": "photo",
+        "friend": "Ali",
+        "photo_cropped": "data/images/Raghav_cropped.jpg",
+        "photo_full": "data/images/Raghav_full.jpeg"
+    }
+]

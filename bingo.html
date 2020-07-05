@@ -7,18 +7,19 @@
 <html>
 
 <head>
-    <!-- browser icon -->
+    <!-- icons -->
     <script src="https://kit.fontawesome.com/39896120a5.js" crossorigin="anonymous"></script>
 
-    <!-- fonts -->
+    <!-- Font & Website logo -->
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
+    <link rel="icon" href="https://img.icons8.com/flat_round/64/000000/whale--v1.png">
 
     <!-- css -->
-    <link rel="stylesheet" type="text/css" href="" id="insert-style">
+    <link rel="stylesheet" type="text/css" href="data/bingo.css">
 
-    <!-- Select type of bingo -->
-    <script src="data/photos.txt"></script>
+    <!-- bingo data -->
+    <script src="data/bingo.txt"></script>
 
     <!-- Disable right click http://www.spacegun.co.uk -->
     <script language=JavaScript>
@@ -40,7 +41,6 @@
     <title>Birthday Bingo</title>
 
     <script type="text/javascript">
-        document.getElementById("insert-style").href = style_file;
         var N = N1;
         var M = M1;
         var data = data1;
@@ -48,32 +48,43 @@
         var wrong_guesses = new Array(N * M).fill(0);
         var correct_guesses = 0;
 
-        // TODO: TEST: Check if num(data) = N*M
+        function start() {
+            document.getElementById("heading").innerHTML = bingo_heading;
+            document.getElementById("specificInstructions").innerHTML = specific_instructions1;
+        }
 
         // generate/restart game
         function generate() {
-            console.log("start");
             document.getElementById("player").innerHTML = "";
-            var node = document.getElementById("grid");
-            var usedPlayers = [];
+            var grid = document.getElementById("grid");
+            wrong_guesses = new Array(N * M).fill(0);
+            correct_guesses = 0;
+            var used_id = [];
             var table_obj = "";
 
-            if (node.innerHTML && !confirm("Are you sure you want to regenerate?"))
+            // TEST: Check if num(data) = N*M
+            if (data.length != N * M) {
+                var error = "<h3>JSON ARRAY LENGTH = " + data.length + " DOES NOT MATCH N*M = " + (N * M) + "</h3>";
+                grid.innerHTML = error;
+                console.log(error)
+                return;
+            }
+
+            if (grid.innerHTML && !confirm("Are you sure you want to regenerate?"))
                 return;
 
             var html = '<table border="0">';
             for (var y = 0; y < M; y++) {
-                console.log("loop start");
                 html += "<tr>"
                 for (var x = 0; x < N; x++) {
                     var obj = data[x + y * N];
 
+                    var i;
                     do {
-                        var i = Math.round(Math.random() * (N * M - 1));
-                        var player = data[i].friend;
-                    } while (usedPlayers.indexOf(player) >= 0);
-                    usedPlayers.push(player);
-                    document.getElementById("player").innerHTML += '<li id="player_' + i + '">' + player + '</li>';
+                        i = Math.round(Math.random() * (N * M - 1));
+                    } while (used_id.indexOf(i) >= 0);
+                    used_id.push(i);
+                    document.getElementById("player").innerHTML += '<li id="player_' + i + '">' + data[i].friend + '</li>';
 
                     // index table obj start 
                     table_obj = '<td id="cell_' + x + '_' + y + '" >';
@@ -82,24 +93,24 @@
                     table_obj += '<span id="chk-cell_' + x + '_' + y + '" onclick="cellClicked(\'cell_' + x + '_' + y + '\')">';
 
                     // adding clickable dice icon
-                    if (type == "quote" || type == "song")
+                    if (obj.type == "quote" || obj.type == "song")
                         table_obj += '<i class=\"fas fa-dice\"></i>';
 
                     // adding clickable image
-                    if (type == "photo")
+                    if (obj.type == "photo")
                         table_obj += '<img src ="' + obj.photo_cropped + '" alt="cropped photo here" />';
 
                     // close guess function
                     table_obj += '</span>';
 
                     // add song name and artist
-                    if (type == "song") {
+                    if (obj.type == "song") {
                         table_obj += "\t" + obj.song + " - " + obj.artist;
                         table_obj += "<br>" + '<span onClick="openPlayer(\'cell_' + x + '_' + y + "')\"><i class=\"fab fa-youtube\"></i></span>";
                     }
 
                     // quote
-                    if (type == "quote" || type == "song")
+                    if (obj.type == "quote" || obj.type == "song")
                         table_obj += "\t" + obj.quote;
 
                     // end table object
@@ -110,20 +121,8 @@
                 html += "</tr>"
             }
             html += "</table>";
-            node.innerHTML = html;
-            save("bingo.grid", html);
-            saveGameState();
+            grid.innerHTML = html;
         }
-
-        /* http://diveintohtml5.info/storage.html */
-        function supports_html5_storage() {
-            try {
-                return 'localStorage' in window && window['localStorage'] !== null;
-            } catch (e) {
-                return false;
-            }
-        }
-
 
         function cellClicked(id) {
             var temp = id.split("_");
@@ -131,15 +130,12 @@
 
             var person = prompt("Enter the name of the friend").trim();
             if (person != null) {
-
-                // correct guess
                 if (person.toLowerCase() == data[i].friend.toLowerCase().trim()) {
                     correctGuess(id, i);
                 } else {
                     wrongGuess(id, i, person);
                 }
             }
-            saveGameState();
         }
 
         function correctGuess(id, i) {
@@ -147,7 +143,7 @@
             var d = document.getElementById(id);
 
             // Change content in box 
-            if (type == "photo") {
+            if (data[i].type == "photo") {
                 var popupModal = document.getElementById("popupModal");
                 var modalImage = document.getElementById("modalImage");
                 popupModal.style.display = "block";
@@ -189,9 +185,9 @@
         function onBingo() {
 
             // Clear page & start loading taskbar
-            document.getElementById("player_list").innerHTML = "";
+            document.getElementById("playerList").innerHTML = "";
             document.getElementById("grid").innerHTML = '<h1 style="background:#0A7328"> Congratulations! Your prize is loading ...</h1>';
-            var elem = document.getElementById("progress_bar");
+            var elem = document.getElementById("progressBar");
             elem.innerHTML = '<h1 style="background:white"> </h1>';
 
             var width = 1;
@@ -202,7 +198,10 @@
 
                     // On loaded, move to prize page
                     clearInterval(id);
-                    window.location.replace("prize.html");
+                    if (prize_link)
+                        window.location.replace(prize_link);
+                    else
+                        window.location.replace("prize.html");
                 } else {
                     width++;
                     elem.style.width = width + '%';
@@ -212,40 +211,12 @@
 
         // open YouTube embedded
         function openPlayer(id) {
-            console.log("ID in openPlayer -> " + id);
             var temp = id.split("_");
             var i = Number(temp[1]) + Number(temp[2]) * N;
             var youTubeCode = data[i].link;
-            console.log(youTubeCode);
-            var elem = document.getElementById("embeddedPlayer");
+
             document.getElementById("youtubePlayer").src = "https://www.youtube.com/embed/" + youTubeCode;
-            if (elem.style.display == "block")
-                elem.style.display = "none";
-            else
-                elem.style.display = "block";
-        }
-
-
-        function saveGameState() {
-            for (var y = 0; y < M; y++) {
-                for (var x = 0; x < N; x++) {
-                    var id = 'cell_' + x + '_' + y;
-                    var c = document.getElementById("chk-" + id);
-                    save("bingo." + id, c.checked);
-                }
-            }
-        }
-
-        function loadGameState() {
-            for (var y = 0; y < M; y++) {
-                for (var x = 0; x < N; x++) {
-                    var id = 'cell_' + x + '_' + y;
-                    var c = document.getElementById("chk-" + id);
-                    c.checked = (load("bingo." + id) == 'true');
-                    var d = document.getElementById(id);
-                    d.className = (c.checked) ? "highlight" : "";
-                }
-            }
+            toggle("embeddedPlayer");
         }
 
         function toggle(id) {
@@ -254,35 +225,6 @@
                 elem.style.display = "none";
             else
                 elem.style.display = "block";
-        }
-
-        save = function(key, value) {};
-        load = function(key) {
-            return null
-        };
-
-        function start() {
-            document.getElementById("heading").innerHTML = bingo_heading;
-            document.getElementById("specific-instructions").innerHTML = specific_instructions1;
-            if (supports_html5_storage()) {
-                save = function(key, value) {
-                    localStorage.setItem(key, value);
-                };
-                load = function(key) {
-                    return localStorage.getItem(key);
-                };
-            } else {
-                alert("Your browser does not support localStorage.\nYou won't be able to persist the Bingo grid.\nUpgrading your browser may help.");
-                return;
-            }
-
-            var grid = load("bingo.grid");
-            if (grid) {
-                console.log("Loaded a previously generated grid");
-                var node = document.getElementById("grid");
-                node.innerHTML = grid;
-                loadGameState();
-            }
         }
 
         function closeModal() {
@@ -314,7 +256,7 @@
                 <li>Enable JavaScript</li>
             </noscript>
             <li>Click <strong>Refresh</strong> to create your Bingo board.</li>
-            <li id="specific-instructions"></li>
+            <li id="specificInstructions"></li>
             <li>If your guess is right, the box will change color and display the name of the person (: </li>
             <li>If your guess is wrong, the box will show you your incorrect guess to help you narrow your search </li>
             <li>HINT: The roster on the left of the grid has names of the people who participated! Hit refresh if it hasn't been populated yet </li>
@@ -326,7 +268,7 @@
         <iframe id="youtubePlayer" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>;
     </div>
 
-    <div style="float:left" id="player_list">
+    <div style="float:left" id="playerList">
         <h2 style="margin-bottom:0">Roster</h2>
         <ul id="player"></ul>
     </div>
@@ -341,7 +283,7 @@
     </div>
 
     <div id="grid"></div>
-    <div id="progress_bar"></div>
+    <div id="progressBar"></div>
 </body>
 
 </html>

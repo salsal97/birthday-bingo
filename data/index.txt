@@ -1,0 +1,21 @@
+let no_of_columns = 4;
+let images = [
+    {
+        "url": "data/index/1.jpeg"
+    },
+    {
+        "url": "data/index/2.jpeg"
+    },
+    {
+        "url": "data/index/3.jpeg"
+    },
+    {
+        "url": "data/index/4.jpeg"
+    },
+    {
+        "url": "data/index/5.jpg"
+    },
+    {
+        "url": "data/index/6.jpeg"
+    }
+];
