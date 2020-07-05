@@ -7,17 +7,18 @@
 <html>
 
 <head>
-    <!-- browser icon -->
+    <!-- icons -->
     <script src="https://kit.fontawesome.com/39896120a5.js" crossorigin="anonymous"></script>
 
-    <!-- fonts -->
+    <!-- Font & Website logo -->
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=DM+Mono' rel='stylesheet'>
+    <link rel="icon" href="https://img.icons8.com/flat_round/64/000000/whale--v1.png">
 
     <!-- css -->
-    <link rel="stylesheet" type="text/css" href="" id="insertStyle">
+    <link rel="stylesheet" type="text/css" href="data/bingo.css">
 
-    <!-- Select type of bingo -->
+    <!-- bingo data -->
     <script src="data/bingo.txt"></script>
 
     <!-- Disable right click http://www.spacegun.co.uk -->
@@ -50,7 +51,6 @@
         function start() {
             document.getElementById("heading").innerHTML = bingo_heading;
             document.getElementById("specificInstructions").innerHTML = specific_instructions1;
-            document.getElementById("insertStyle").href = style_file;
         }
 
         // generate/restart game
@@ -73,7 +73,6 @@
             if (grid.innerHTML && !confirm("Are you sure you want to regenerate?"))
                 return;
 
-            console.log("grid start");
             var html = '<table border="0">';
             for (var y = 0; y < M; y++) {
                 html += "<tr>"
@@ -212,17 +211,12 @@
 
         // open YouTube embedded
         function openPlayer(id) {
-            console.log("ID in openPlayer -> " + id);
             var temp = id.split("_");
             var i = Number(temp[1]) + Number(temp[2]) * N;
             var youTubeCode = data[i].link;
-            console.log(youTubeCode);
-            var elem = document.getElementById("embeddedPlayer");
+
             document.getElementById("youtubePlayer").src = "https://www.youtube.com/embed/" + youTubeCode;
-            if (elem.style.display == "block")
-                elem.style.display = "none";
-            else
-                elem.style.display = "block";
+            toggle("embeddedPlayer");
         }
 
         function toggle(id) {

@@ -1,41 +1,46 @@
 # birthday-bingo
-Play a game of Birthday Bingo! 
+Play a game of Birthday Bingo!
 
-## Select your bingo
+The player will see a list of friends participating on the left of a bingo board populated with any of our [current offerings](#Current-offerings). Pretty simple, they have to guess the name of the friend that put the clue in the bingo tile by clicking on the dice symbol or a picture if present. On a successful bingo you can configure a remote prize! (Eg: A video/link/message/both/all) - if they guess the entire board right, they unlock the final [prize](#Configuring-the-prize).
 
-Select what kind of bingo you want! Current offerings are: (descriptions are in this document, to help you choose)
-1. [Song Bingo](#Song-Bingo) -> `song`
-2. [Quote Bingo](#Quote-Bingo) -> `quote`
-3. [Photo Bingo](#Photo-Bingo) -> `photo`
+Made especially for those honouring the stay home stay safe policy! Share your screen with your friends and have fun with this little game of Birthday Bingo (: 
 
-Steps to really select it: 
-1. Navigate to this section of your `index.html`, `bingo.html`, and `prize.html` one at a time.
-```html
-    <!-- include data -->
-    <script src="data/songs.txt"></script>
-```
-2. Replace the `songs.txt` file with the name of the file matching your bingo selection. Eg: Quote Bingo has `quotes.txt`
+## Current offerings
 
-3. Save all three files!
+Select what kind of bingo you want or mix and match! Current offerings are: 
+1. Song Bingo -> `song` <br/>
+    Friends will choose songs for the player to guess. The bingo tile will have the name of the song, its artist, and a quote from the song. Click on the dice symbol in the tile to guess the name of the person who chose this song! The player will also be able to click a play button to play this song via youtube if they need a refresher! <br/>
+    eg: birthday-bingo.azurewebsites.net<br/>
+2. Quote Bingo -> `quote`<br/>
+    Friends will choose quotes for the player to guess. The bingo tile will consist of the quote - and the player will click on the dice symbol in the tile to guess the name of the person who put in the quote for them.  <br/>
+    eg: quote-bingo.azurewebsites.net<br/>
+3. Photo Bingo -> `photo`<br/>
+    Friends will choose photos of themselves with the player, and also save a version in which they have cropped themselves out. Pretty simple, the player can share their screen and guess the person who was in that picture with them, and click on the picture to enter their guess. <br/>
+    eg: photo-bingo.azurewebsites.net<br/>
 
 ## Front page setup
 
 If you would like to add pictures on the front page: <br/>
-1. Add their location to [this](data/front_page.txt) file <br/>
-2. Add the pictures in [this](data/front_page) location
-
-## Song Bingo
-Friends will choose songs for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the song for them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!<br/>
-eg: birthday-bingo.azurewebsites.net
-
-### Steps to configure:
-
-1. Make sure you have selected the right bingo by following [this](#Select-your-bingo) & you have added your front page pictures by following [this](#Front-page-setup)
-
-2. Collect a json array of data from friends and family with the following recommended fields: 
-
+1. Add their location to [this](data/index.txt) file <br/>
 ```json
 {
+    "url": "data/index/name-of-photo.jpg"
+}
+```
+2. Add the pictures in [this](data/index) location in the repo
+
+## Configure your bingo!
+
+1. Locate the file [bingo.txt](data/bingo.txt) and the [images folder](data/images) as this is where you will be putting most of your data
+
+2. Each bingo tile can contain any of the current offerings Collect a json array of data from friends and family with the following recommended fields: <br/> 
+Each bingo tile may contain any of the three [current offerings](#Current-offerings) - <br/>
+
+a. For a `song`
+```json
+{
+    "id": 123,
+    "type": "song",
     "friend": "name-of-person-choosing-song",
     "song": "name-of-song",
     "artist": "songs-artist",
@@ -43,87 +48,46 @@ eg: birthday-bingo.azurewebsites.net
     "link": "youtube-hash"
 }
 ```
-
-3. Populate [this](data/songs.txt) file <br/>
-    a. put the json array under `data1` <br/>
-    b. the number of columns in the bingo grid under `N1` <br/>
-    c. the number of rows in the bingo grid under `M1` <br/>
-    d. put the number of wrong guesses you would like to allow before the person is asked if they want to give up under `wrong_guess_max1`<br/>
-    e. OPTIONAL: If you would like to change the theme of the website, tackle [this](data/songs.css) file.
-    f. OPTIONAL: If you are interested, you can also change values in the self explanatory fields `wrong_guess_color`, `correct_guess_color`, `specific_instructions1`
-
-4. [Configure a prize!](#Configuring-the-prize)
-
-5. Upload this code to a web app server (we chose [Microsoft Azure](https://portal.azure.com))
-
-6. BINGO! Send your website link to the birthday boy/girl and get on a video call, ask them to share their screen, and play this game of bingo!
-
-## Quote Bingo
-Friends will choose quotes for the birthday boy/girl to guess. The birthday boy/girl can share their screen and guess the person who chose the quote for them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!<br/>
-eg: quote-bingo.azurewebsites.net
-
-### Steps to configure:
-
-1. Make sure you have selected the right bingo by following [this](#Select-your-bingo) & you have added your front page pictures by following [this](#Front-page-setup)
-
-2. Collect a json array of data from friends and family with the following recommended fields: 
-
+    
+b. For a `quote`
 ```json
 {
-    "friend": "Nair",
-    "quote": "\"Long walks can mend anything\""
+    "id": 123,
+    "type": "quote",
+    "friend": "name-of-person-providing-quote",
+    "quote": "quote-goes-here"
 }
 ```
 
-3. Populate [this](data/quotes.txt) file <br/>
-    a. put the json array under `data1` <br/>
-    b. the number of columns in the bingo grid under `N1` <br/>
-    c. the number of rows in the bingo grid under `M1` <br/>
-    d. put the number of wrong guesses you would like to allow before the person is asked if they want to give up under `wrong_guess_max1`<br/>
-    e. OPTIONAL: If you would like to change the theme of the website, tackle [this](data/quotes.css) file.
-    f. OPTIONAL: If you are interested, you can also change values in the self explanatory fields `wrong_guess_color`, `correct_guess_color`, `specific_instructions1`
-
-4. [Configure a prize!](#Configuring-the-prize)
-
-5. Upload this code to a web app server (we chose [Microsoft Azure](https://portal.azure.com))
-
-6. BINGO! Send your website link to the birthday boy/girl and get on a video call, ask them to share their screen, and play this game of bingo!
-
-## Photo Bingo
-Friends will choose photos of themselves with the birthday boy/girl, and also save a version in which they have cropped themselves out. Pretty simple, the birthday boy/girl can share their screen and guess the person who was in that picture with them, and unlock the final [prize](#Configuring-the-prize) once they BINGO!<br/>
-eg: photo-bingo.azurewebsites.net
-
-### Steps to configure:
-
-1. Make sure you have selected the right bingo by following [this](#Select-your-bingo) & you have added your front page pictures by following [this](#Front-page-setup)
-
-2. Collect a json array of data from friends and family with the following recommended fields: 
-
+c. For a `photo`...
 ```json
 {
-    "friend": "Isha",
-    "photo_cropped": "data/images/Isha_cropped.jpg",
-    "photo_full": "data/images/Isha_full.jpg"
+    "id": 123,
+    "type": "photo",
+    "friend": "name-of-friend-in-photo",
+    "photo_cropped": "data/images/name-of-friend-in-photo_cropped.jpg",
+    "photo_full": "data/images/name-of-friend-in-photo_full.jpeg"
 }
-```
-
-3. Populate [this](data/photos.txt) file <br/>
+ ```
+3. Populate [this](data/bingo.txt) file <br/>
     a. put the json array under `data1` <br/>
     b. the number of columns in the bingo grid under `N1` <br/>
     c. the number of rows in the bingo grid under `M1` <br/>
     d. put the number of wrong guesses you would like to allow before the person is asked if they want to give up under `wrong_guess_max1`<br/>
-    e. OPTIONAL: If you would like to change the theme of the website, tackle [this](data/songs.css) file.
+    e. OPTIONAL: If you would like to change the theme of the website, tackle [this](data/songs.css) file.<br/>
     f. OPTIONAL: If you are interested, you can also change values in the self explanatory fields `wrong_guess_color`, `correct_guess_color`, `specific_instructions1`
 
-4. [Configure a prize!](#Configuring-the-prize)
+4. If you have any pictures for photo bingo, put them in the [images folder](data/images) and verify that the image name exactly matches the one you put in the json in step 2
 
-5. Upload this code to a web app server (we chose [Microsoft Azure](https://portal.azure.com))
+5. [Configure a prize!](#Configuring-the-prize)
 
-6. BINGO! Send your website link to the birthday boy/girl and get on a video call, ask them to share their screen, and play this game of bingo!
+6. Upload this code to a web app server (we chose [Microsoft Azure](https://portal.azure.com))
+
+7. BINGO! Send your website link to the birthday boy/girl and get on a video call, ask them to share their screen, and play this game of bingo!
 
 ## Configuring the prize
 
-Your prize can be a youtube video, and/or a google drive video or picture, and/or a simple link to another webpage, and/or an image used from any online website (Be cautious of copyright issues). It can be one or two or all of them. Exactly how to configure this is described below.
+Your prize can be a youtube video, and/or a google drive video or picture, and/or a simple link to another webpage, and/or an image used from any online website (Be cautious of copyright issues). It can be one or two or all of them. Exactly how to configure this is described below. If you have any trouble with image dimensions, change the width and height allowance in [this](prize.html) file.
 
 1. Youtube links<br/>
 a. Navigate to the video you want to embed as a prize. Eg: Link = https://www.youtube.com/watch?v=_A70SfWAO18<br/>

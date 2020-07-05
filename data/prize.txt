@@ -1,5 +1,5 @@
 let google_drive_media_hash = "";
-let youtube_video_hash = "";
-let google_image_link = "https://lh3.googleusercontent.com/hNuCgg36q0w-vBV3O_YUn-hyO8on1t7YcsBGFl_P16X2CboyQKuOCuVElgJ8TLP2Qri_0Be8ve9sGapmzM4gjnbVwekM9oGJPkYCHJCSIBC-mpAPWFNATbKqxLZK28uOM0EMPZDt2DRV7XlNXf3112U3YZ5F_uE6i6obxzpMCzNLFE4-S5haveIHv1zWrPIH5xrqYUR-lBtsO4x5vl7-uwJjz6FzRd1xGlbNgWveXx00Urh0tI-ADpB8mDvvmboz3Qp28cdE3IojwGgX7VK7xb_VwJNWv47vXPz11B1sLN1oOBuX1lqSD3RitJcUQltDflG_jDiod5bk0zgStvxrclX7h2xKEGTAzj6mGlAllKj_xy_0IbhgFc7ofBOM-i6M5wZhER3pausRmH3J_wpvCySEeBJ7wzIf8Km8D1aLNYXmuIlcDbCbtN1PvXNqwzd3mBukoUDHcUxCapGjGL1ntDSw2zvY7QQIqJRtMtfVzeHBmspUIrMJo7GViRTKf0YQHhTLpm0o7ONlYxaNuQsE8Pkl8YYizxDlcjGzIf9zFoheyHgnKwKe3Ia3kuwuxXAVXDx3yKARERMDDBaqUcAjrT-eZTx3Rzzx99vsTZazSzeDqSwJBqmVJH2Eo5yRKFpzrc6orOulmASkPtiWKlTgTy1o4GHwfPvKgOc-GkgKVxYZZOjNxiMKY7mGdPnEiQ=w957-h538-no?authuser=0";
-let hyperlink = "";
-let hyperlink_text = "";
+let youtube_video_hash = "_Am0SfWAO18";
+let google_image_link = "";
+let hyperlink = "https://www.amazon.com/gcx/Gifts-for-Everyone/gfhz/";
+let hyperlink_text = "Gifts for Everyone";
